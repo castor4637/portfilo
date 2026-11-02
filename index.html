@@ -128,58 +128,168 @@
       width: 90%;
       max-width: 1400px;
       margin: 0 auto;
-      padding: 4rem 0 5rem;
+      min-height: 560px;
+      padding: 4rem 0;
       display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 3.5rem;
-      align-items: start;
+      grid-template-columns: 1fr 400px;
+      gap: 4rem;
+      align-items: center;
     }
 
-    /* Profil */
-    .profile {
+    /* ----- Texte à gauche ----- */
+    .eyebrow {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.18);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      color: #6ee7b7;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.3rem;
+    }
+
+    .hero-name {
+      font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #34d399, #a7f3d0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tagline span { color: #6ee7b7; padding: 0 0.35rem; }
+
+    .hero-text {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.88);
+      max-width: 720px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.6rem;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #fff;
+      background: rgba(15, 23, 42, 0.35);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .btn:hover { background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #04251c;
+    }
+
+    .btn-primary:hover { background: #34d399; }
+
+    .hero-interests {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 2.2rem;
+    }
+
+    .hero-interests .label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      margin-right: 0.3rem;
+    }
+
+    .chip {
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.9rem;
+    }
+
+    /* ----- Carte de profil à droite ----- */
+    .profile-card {
+      background: rgba(2, 20, 15, 0.55);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 1.25rem;
+      padding: 2.5rem 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-    }
-
-    .avatar-wrap {
-      width: 190px;
-      height: 190px;
-      margin-bottom: 1.1rem;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.35);
     }
 
     .avatar {
-      width: 100%;
-      height: 100%;
+      width: 190px;
+      height: 190px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid rgba(15, 23, 42, 0.85);
+      border: 4px solid rgba(16, 185, 129, 0.8);
       background: #0b3b30;
+      margin-bottom: 1.3rem;
     }
 
-    .profile h2 {
-      font-size: 1.35rem;
+    .profile-card h2 {
+      font-size: 1.45rem;
       font-weight: 800;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
-    .profile .role {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-top: 0.4rem;
+    .profile-card .role {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #6ee7b7;
+      margin-top: 0.3rem;
     }
 
-    .profile .org {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.9);
+    .profile-card .org {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      margin-top: 0.15rem;
     }
+
+    .profile-card .location {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 0.9rem;
+    }
+
+    .profile-card .location i { color: var(--primary); margin-right: 0.4rem; }
 
     .socials {
       display: flex;
-      gap: 1.1rem;
-      margin-top: 1.4rem;
-      font-size: 1.45rem;
+      gap: 1.3rem;
+      margin-top: 1.6rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      width: 100%;
+      justify-content: center;
+      font-size: 1.5rem;
     }
 
     .socials a {
@@ -190,94 +300,6 @@
     .socials a:hover {
       color: var(--primary);
       transform: translateY(-2px);
-    }
-
-    /* À propos */
-    .about h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-bottom: 1.2rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-
-    .about p {
-      font-size: 1.15rem;
-      line-height: 1.85;
-      color: rgba(255,255,255,0.92);
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    }
-
-    .btn-cv {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-top: 1.6rem;
-      padding: 0.7rem 1.4rem;
-      background: rgba(30, 41, 59, 0.85);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 0.6rem;
-      color: #cbd5e1;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .btn-cv:hover {
-      background: var(--primary);
-      color: #04251c;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-      gap: 3rem;
-      margin-top: 2.5rem;
-    }
-
-    .info-grid h3 {
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      color: rgba(255,255,255,0.92);
-    }
-
-    .interests-list { padding-left: 1.4rem; }
-
-    .interests-list li {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      color: rgba(255,255,255,0.92);
-    }
-
-    .interests-list li::marker { color: var(--primary); }
-
-    .edu-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .logo-inline {
-      width: 60px;
-      height: 40px;
-      object-fit: contain;
-      background: #ffffff;
-      border-radius: 6px;
-      padding: 3px;
-      flex-shrink: 0;
-    }
-
-    .edu-item strong {
-      display: block;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.95);
-    }
-
-    .edu-item span {
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.75);
     }
 
     /* ===== CONTENU PRINCIPAL ===== */
@@ -317,7 +339,6 @@
       margin-bottom: 0.75rem;
     }
 
-    /* RECTANGLE BIEN ALLONGÉ SUR LA LONGUEUR (240px x 80px) */
     .card-logo {
       width: 240px;
       height: 80px;
@@ -330,9 +351,7 @@
       flex-shrink: 0;
     }
 
-    .card-header-body {
-      width: 100%;
-    }
+    .card-header-body { width: 100%; }
 
     .card-header {
       display: flex;
@@ -372,12 +391,14 @@
     }
 
     /* ===== RESPONSIVE ===== */
+    @media (max-width: 1000px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; min-height: 0; }
+      .profile-card { order: -1; max-width: 420px; width: 100%; margin: 0 auto; }
+    }
+
     @media (max-width: 900px) {
       nav { grid-template-columns: 1fr auto; }
       .nav-links { display: none; }
-      .hero-inner { grid-template-columns: 1fr; }
-      .info-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .about { text-align: left; }
       .card-header-with-logo { flex-direction: column; align-items: flex-start; }
       .card-logo { width: 100%; max-width: 240px; }
     }
@@ -409,55 +430,46 @@
     </svg>
 
     <div class="hero-inner">
-      <div class="profile">
-        <div class="avatar-wrap">
-          <img class="avatar" src="photo_de_profil.jpeg" alt="Photo de Maxence Olivier">
+
+      <!-- Texte à gauche -->
+      <div class="hero-text-col">
+        <span class="eyebrow">À propos de moi</span>
+        <h1 class="hero-name">Maxence Olivier</h1>
+        <p class="hero-tagline">
+          Intelligence Artificielle<span>·</span>Santé connectée<span>·</span>Python<span>·</span>Flutter
+        </p>
+        <p class="hero-text">
+          Passionné par la convergence entre le génie biomédical et les nouvelles technologies, je suis élève ingénieur à l'EPISEN (UPEC) avec une spécialisation en Intelligence Artificielle. Mon objectif : concevoir des solutions innovantes, intelligentes et connectées pour répondre aux défis de la santé et améliorer le suivi médical au quotidien.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projets" class="btn btn-primary"><i class="fas fa-folder-open"></i> Voir mes projets</a>
+          <a href="cv_maxence_olivier.pdf" class="btn" download><i class="fas fa-download"></i> Télécharger mon CV</a>
+          <a href="mailto:maxenceolivier2@gmail.com" class="btn"><i class="fas fa-envelope"></i> Me contacter</a>
         </div>
+
+        <div class="hero-interests">
+          <span class="label">Centres d'intérêt :</span>
+          <span class="chip">Intelligence Artificielle</span>
+          <span class="chip">Génie biomédical</span>
+          <span class="chip">Objets connectés & santé</span>
+        </div>
+      </div>
+
+      <!-- Carte profil à droite -->
+      <aside class="profile-card">
+        <img class="avatar" src="photo_de_profil.jpeg" alt="Photo de Maxence Olivier">
         <h2>Maxence Olivier</h2>
-        <div class="role">Élève Ingénieur</div>
+        <div class="role">Élève Ingénieur – Spécialité IA</div>
         <div class="org">EPISEN – UPEC</div>
+        <div class="location"><i class="fas fa-map-marker-alt"></i>Île-de-France</div>
 
         <div class="socials">
           <a href="mailto:maxenceolivier2@gmail.com" aria-label="Email"><i class="fas fa-at"></i></a>
           <a href="https://www.linkedin.com/in/olivier-maxence" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
-      </div>
+      </aside>
 
-      <div class="about">
-        <h1>À propos de moi</h1>
-        <p>
-          Passionné par la convergence entre le génie biomédical et les nouvelles technologies, je suis élève ingénieur à l'EPISEN (UPEC) avec une spécialisation en Intelligence Artificielle. Mon objectif : concevoir des solutions innovantes, intelligentes et connectées pour répondre aux défis de la santé et améliorer le suivi médical au quotidien.
-        </p>
-
-        <a href="cv_maxence_olivier.pdf" class="btn-cv" download><i class="fas fa-download"></i> Télécharger mon CV</a>
-
-        <div class="info-grid">
-          <div>
-            <h3>Centres d'intérêt</h3>
-            <ul class="interests-list">
-              <li>Intelligence Artificielle</li>
-              <li>Génie biomédical</li>
-              <li>Objets connectés & santé</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3>Formation</h3>
-            <div class="edu-item">
-              <img src="EPISEN_logo-RVB.jpg" alt="EPISEN" class="logo-inline">
-              <div><strong>Ingénieur ITS – Spécialité IA</strong><span>EPISEN – UPEC</span></div>
-            </div>
-            <div class="edu-item">
-              <img src="cropped-Lyce_e-du-Hainaut-OF-20170123.png" alt="Lycée du Hainaut" class="logo-inline">
-              <div><strong>CPGE TSI</strong><span>Lycée du Hainaut, Valenciennes</span></div>
-            </div>
-            <div class="edu-item">
-              <img src="logo-Paul-Duez-Cambrai.jpeg" alt="Lycée Paul Duez" class="logo-inline">
-              <div><strong>BAC STI2D</strong><span>Lycée Paul Duez, Cambrai</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
