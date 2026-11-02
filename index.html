@@ -7,13 +7,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --bg-dark: #0f172a;
-      --bg-card: #1e293b;
+      --primary: #38bdf8;
+      --primary-hover: #0284c7;
       --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border: #334155;
+      --text-muted: #cbd5e1;
+      --border: rgba(255, 255, 255, 0.15);
     }
 
     * {
@@ -24,7 +22,9 @@
     }
 
     body {
-      background-color: var(--bg-dark);
+      /* Arrière-plan fixé avec votre image */
+      background: url("fond_d'écran_portfolio.jpg") no-repeat center center fixed;
+      background-size: cover;
       color: var(--text-main);
       line-height: 1.6;
       min-height: 100vh;
@@ -35,7 +35,7 @@
     header {
       border-bottom: 1px solid var(--border);
       padding: 1.5rem 2rem;
-      background-color: rgba(15, 23, 42, 0.85);
+      background-color: rgba(15, 23, 42, 0.7);
       backdrop-filter: blur(8px);
       position: sticky;
       top: 0;
@@ -66,13 +66,14 @@
       color: var(--text-muted);
       text-decoration: none;
       transition: color 0.2s;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
     }
 
     .nav-links a:hover {
       color: var(--text-main);
     }
 
-    /* Layout vertical en 1 seule colonne */
+    /* Conteneur principal sans fond foncé */
     .container {
       max-width: 900px;
       width: 100%;
@@ -84,11 +85,11 @@
       gap: 2.5rem;
     }
 
+    /* Suppression des fonds foncés (Card / Container) */
     section {
-      background-color: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 0.75rem;
-      padding: 2rem;
+      background: transparent;
+      border: none;
+      padding: 1rem 0;
       width: 100%;
     }
 
@@ -101,29 +102,33 @@
       color: var(--primary);
       border-bottom: 1px solid var(--border);
       padding-bottom: 0.75rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
 
-    /* 1. Présentation / À propos */
+    /* 1. Présentation */
     .about-section {
       text-align: center;
+      padding: 2rem 0;
     }
 
     .badge {
       display: inline-block;
-      background-color: rgba(37, 99, 235, 0.1);
+      background-color: rgba(56, 189, 248, 0.2);
       color: var(--primary);
       padding: 0.4rem 1rem;
       border-radius: 9999px;
       font-size: 0.875rem;
       font-weight: 600;
       margin-bottom: 1.25rem;
-      border: 1px solid rgba(37, 99, 235, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      backdrop-filter: blur(4px);
     }
 
     h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
       font-weight: 800;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.9);
     }
 
     .about-text {
@@ -131,6 +136,7 @@
       color: var(--text-muted);
       max-width: 750px;
       margin: 0 auto 1.5rem;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
     }
 
     .contact-info {
@@ -141,6 +147,7 @@
       margin-top: 1.5rem;
       font-size: 0.95rem;
       color: var(--text-muted);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
     }
 
     .contact-info div {
@@ -169,14 +176,15 @@
 
     .btn-primary {
       background-color: var(--primary);
-      color: white;
+      color: #0f172a;
     }
 
     .btn-primary:hover {
       background-color: var(--primary-hover);
+      color: white;
     }
 
-    /* Éléments empilés (Formations & Projets) */
+    /* Éléments empilés sans fond foncé */
     .stack-list {
       display: flex;
       flex-direction: column;
@@ -184,11 +192,11 @@
     }
 
     .card-item {
-      background-color: rgba(15, 23, 42, 0.5);
-      border: 1px solid var(--border);
-      border-radius: 0.5rem;
-      padding: 1.5rem;
+      background: transparent;
+      border-left: 3px solid var(--primary);
+      padding: 0.5rem 0 0.5rem 1.25rem;
       width: 100%;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
     }
 
     .card-header {
@@ -238,6 +246,7 @@
       font-size: 1.05rem;
       color: var(--text-muted);
       margin-bottom: 0.75rem;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
     }
 
     .tags {
@@ -247,12 +256,13 @@
     }
 
     .tag {
-      background-color: var(--bg-dark);
+      background-color: rgba(15, 23, 42, 0.6);
       color: var(--text-main);
       padding: 0.4rem 0.8rem;
       border-radius: 0.375rem;
       font-size: 0.875rem;
       border: 1px solid var(--border);
+      backdrop-filter: blur(4px);
     }
 
     footer {
@@ -261,12 +271,13 @@
       padding: 2rem;
       color: var(--text-muted);
       font-size: 0.875rem;
+      background-color: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
     }
 
     @media (max-width: 640px) {
       h1 { font-size: 1.8rem; }
       .container { padding: 1.5rem 1rem; gap: 1.5rem; }
-      section { padding: 1.25rem; }
     }
   </style>
 </head>
@@ -286,7 +297,7 @@
 
   <main class="container">
 
-    <!-- 1. PRÉSENTATION / À PROPOS DE MOI -->
+    <!-- 1. PRÉSENTATION / À PROPOS -->
     <section class="about-section" id="about">
       <div class="badge">Étudiant Ingénieur en Santé & IA</div>
       <h1>Maxence Olivier</h1>
@@ -346,12 +357,11 @@
       </div>
     </section>
 
-    <!-- 3. PROJETS (Plein de place pour en rajouter d'autres en dessous) -->
+    <!-- 3. PROJETS -->
     <section id="projets">
       <h2><i class="fas fa-folder-open"></i> Mes Projets</h2>
       <div class="stack-list">
 
-        <!-- Projet 1 -->
         <div class="card-item">
           <div class="card-header">
             <span class="card-title">Projet MESPI - Brassard Électronique Connecté</span>
@@ -368,7 +378,6 @@
           </div>
         </div>
 
-        <!-- Projet 2 -->
         <div class="card-item">
           <div class="card-header">
             <span class="card-title">Projet Scrum - Application de Suivi Post-Opératoire</span>
@@ -382,8 +391,6 @@
             <span class="tag">Gestion de Produit</span>
           </div>
         </div>
-
-        <!-- Vous pourrez ajouter d'autres cartes de projets ici plus tard -->
 
       </div>
     </section>
