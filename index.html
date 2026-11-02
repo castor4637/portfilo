@@ -105,7 +105,7 @@
 
     .icon-btn:hover { color: var(--primary); }
 
-    /* ===== HERO VERT AVEC RELIEFS ===== */
+    /* ===== HERO VERT ===== */
     .hero {
       position: relative;
       overflow: hidden;
@@ -133,7 +133,7 @@
       align-items: start;
     }
 
-    /* Colonne profil */
+    /* Profil */
     .profile {
       display: flex;
       flex-direction: column;
@@ -142,7 +142,6 @@
     }
 
     .avatar-wrap {
-      position: relative;
       width: 190px;
       height: 190px;
       margin-bottom: 1.1rem;
@@ -191,7 +190,7 @@
       transform: translateY(-2px);
     }
 
-    /* Colonne texte */
+    /* À propos */
     .about h1 {
       font-size: 2rem;
       font-weight: 800;
@@ -250,20 +249,21 @@
 
     .interests-list li::marker { color: var(--primary); }
 
+    /* Style des items de formation dans la grille */
     .edu-item {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.8rem;
       margin-bottom: 0.9rem;
     }
 
-    .school-logo {
-      width: 42px;
-      height: 42px;
+    .logo-inline {
+      width: 36px;
+      height: 36px;
       object-fit: contain;
       background: #ffffff;
       border-radius: 6px;
-      padding: 4px;
+      padding: 2px;
       flex-shrink: 0;
     }
 
@@ -279,7 +279,7 @@
       color: rgba(255,255,255,0.75);
     }
 
-    /* ===== RESTE DU SITE ===== */
+    /* ===== CONTENU PRINCIPAL ===== */
     .container {
       max-width: 900px;
       width: 100%;
@@ -316,19 +316,15 @@
       margin-bottom: 0.5rem;
     }
 
-    .card-header-logo {
-      width: 48px;
-      height: 48px;
+    .card-logo {
+      width: 44px;
+      height: 44px;
       object-fit: contain;
       background: #ffffff;
       border-radius: 8px;
-      padding: 4px;
+      padding: 3px;
       border: 1px solid var(--border);
       flex-shrink: 0;
-    }
-
-    .card-header-content {
-      width: 100%;
     }
 
     .card-header {
@@ -337,6 +333,7 @@
       align-items: flex-start;
       flex-wrap: wrap;
       gap: 0.5rem;
+      width: 100%;
     }
 
     .card-title { font-size: 1.2rem; font-weight: 700; }
@@ -396,7 +393,6 @@
 
   <!-- HERO -->
   <div class="hero" id="about">
-    <!-- Reliefs en arrière-plan -->
     <svg class="hero-bg" viewBox="0 0 1300 700" preserveAspectRatio="none" aria-hidden="true">
       <polygon points="0,200 250,120 520,230 880,90 1300,260 1300,0 0,0" fill="#022c22" opacity="0.7"/>
       <polygon points="0,330 300,230 600,360 950,200 1300,400 1300,700 0,700" fill="#064e3b" opacity="0.55"/>
@@ -404,10 +400,10 @@
     </svg>
 
     <div class="hero-inner">
-      <!-- Colonne gauche : profil -->
+      <!-- Colonne profil -->
       <div class="profile">
         <div class="avatar-wrap">
-          <img class="avatar" src="./photo_de_profil.jpeg" alt="Photo de Maxence Olivier">
+          <img class="avatar" src="photo_de_profil.jpeg" alt="Photo de Maxence Olivier">
         </div>
         <h2>Maxence Olivier</h2>
         <div class="role">Élève Ingénieur</div>
@@ -419,7 +415,7 @@
         </div>
       </div>
 
-      <!-- Colonne droite : à propos -->
+      <!-- Colonne à propos -->
       <div class="about">
         <h1>À propos de moi</h1>
         <p>
@@ -441,15 +437,15 @@
           <div>
             <h3>Formation</h3>
             <div class="edu-item">
-              <img src="./EPISEN_logo-RVB.jpg" alt="Logo EPISEN" class="school-logo">
+              <img src="EPISEN_logo-RVB.jpg" alt="EPISEN" class="logo-inline">
               <div><strong>Ingénieur ITS – Spécialité IA</strong><span>EPISEN – UPEC</span></div>
             </div>
             <div class="edu-item">
-              <img src="./cropped-Lyce_e-du-Hainaut-OF-20170123.png" alt="Logo Lycée du Hainaut" class="school-logo">
+              <img src="cropped-Lyce_e-du-Hainaut-OF-20170123.png" alt="Lycée du Hainaut" class="logo-inline">
               <div><strong>CPGE TSI</strong><span>Lycée du Hainaut, Valenciennes</span></div>
             </div>
             <div class="edu-item">
-              <img src="./logo-Paul-Duez-Cambrai.jpeg" alt="Logo Lycée Paul Duez" class="school-logo">
+              <img src="logo-Paul-Duez-Cambrai.jpeg" alt="Lycée Paul Duez" class="logo-inline">
               <div><strong>BAC STI2D</strong><span>Lycée Paul Duez, Cambrai</span></div>
             </div>
           </div>
@@ -467,8 +463,8 @@
 
         <div class="card-item">
           <div class="card-header-with-logo">
-            <img src="./EPISEN_logo-RVB.jpg" alt="Logo EPISEN" class="card-header-logo">
-            <div class="card-header-content">
+            <img src="EPISEN_logo-RVB.jpg" alt="EPISEN" class="card-logo">
+            <div style="width: 100%;">
               <div class="card-header">
                 <span class="card-title">Formation ITS (Ingénieur en Technologies pour la Santé)</span>
                 <span class="card-date">2025 - 2028</span>
@@ -484,8 +480,8 @@
 
         <div class="card-item">
           <div class="card-header-with-logo">
-            <img src="./cropped-Lyce_e-du-Hainaut-OF-20170123.png" alt="Logo Lycée du Hainaut" class="card-header-logo">
-            <div class="card-header-content">
+            <img src="cropped-Lyce_e-du-Hainaut-OF-20170123.png" alt="Lycée du Hainaut" class="card-logo">
+            <div style="width: 100%;">
               <div class="card-header">
                 <span class="card-title">CPGE TSI (Classe Préparatoire aux Grandes Écoles)</span>
                 <span class="card-date">2023 - 2025</span>
@@ -498,8 +494,8 @@
 
         <div class="card-item">
           <div class="card-header-with-logo">
-            <img src="./logo-Paul-Duez-Cambrai.jpeg" alt="Logo Lycée Paul Duez" class="card-header-logo">
-            <div class="card-header-content">
+            <img src="logo-Paul-Duez-Cambrai.jpeg" alt="Lycée Paul Duez" class="card-logo">
+            <div style="width: 100%;">
               <div class="card-header">
                 <span class="card-title">BAC STI2D</span>
                 <span class="card-date">2023</span>
