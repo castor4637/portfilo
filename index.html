@@ -9,6 +9,7 @@
     :root {
       --primary: #38bdf8;
       --primary-hover: #0284c7;
+      --bg-dark: #0f172a;
       --text-main: #f8fafc;
       --text-muted: #cbd5e1;
       --border: rgba(255, 255, 255, 0.15);
@@ -22,9 +23,7 @@
     }
 
     body {
-      /* Arrière-plan fixé avec votre image */
-      background: url("fond_d'écran_portfolio.jpg") no-repeat center center fixed;
-      background-size: cover;
+      background-color: var(--bg-dark);
       color: var(--text-main);
       line-height: 1.6;
       min-height: 100vh;
@@ -35,7 +34,7 @@
     header {
       border-bottom: 1px solid var(--border);
       padding: 1.5rem 2rem;
-      background-color: rgba(15, 23, 42, 0.7);
+      background-color: rgba(15, 23, 42, 0.9);
       backdrop-filter: blur(8px);
       position: sticky;
       top: 0;
@@ -66,14 +65,12 @@
       color: var(--text-muted);
       text-decoration: none;
       transition: color 0.2s;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
     }
 
     .nav-links a:hover {
       color: var(--text-main);
     }
 
-    /* Conteneur principal sans fond foncé */
     .container {
       max-width: 900px;
       width: 100%;
@@ -85,7 +82,7 @@
       gap: 2.5rem;
     }
 
-    /* Suppression des fonds foncés (Card / Container) */
+    /* Suppression des conteneurs/cards foncés pour le reste du site */
     section {
       background: transparent;
       border: none;
@@ -102,13 +99,18 @@
       color: var(--primary);
       border-bottom: 1px solid var(--border);
       padding-bottom: 0.75rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
 
-    /* 1. Présentation */
+    /* 1. Carte de Présentation / Profil avec l'image en fond */
     .about-section {
       text-align: center;
-      padding: 2rem 0;
+      padding: 3rem 2rem;
+      border-radius: 1rem;
+      /* Image de fond pour le profil */
+      background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url("fond_d'écran_portfolio.jpg") no-repeat center center;
+      background-size: cover;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
 
     .badge {
@@ -128,15 +130,15 @@
       font-size: 2.5rem;
       margin-bottom: 1rem;
       font-weight: 800;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
 
     .about-text {
       font-size: 1.1rem;
-      color: var(--text-muted);
+      color: var(--text-main);
       max-width: 750px;
       margin: 0 auto 1.5rem;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.9);
     }
 
     .contact-info {
@@ -147,7 +149,7 @@
       margin-top: 1.5rem;
       font-size: 0.95rem;
       color: var(--text-muted);
-      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.9);
     }
 
     .contact-info div {
@@ -184,7 +186,7 @@
       color: white;
     }
 
-    /* Éléments empilés sans fond foncé */
+    /* Éléments empilés (Formations & Projets) */
     .stack-list {
       display: flex;
       flex-direction: column;
@@ -196,7 +198,6 @@
       border-left: 3px solid var(--primary);
       padding: 0.5rem 0 0.5rem 1.25rem;
       width: 100%;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
     }
 
     .card-header {
@@ -246,7 +247,6 @@
       font-size: 1.05rem;
       color: var(--text-muted);
       margin-bottom: 0.75rem;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
     }
 
     .tags {
@@ -256,13 +256,12 @@
     }
 
     .tag {
-      background-color: rgba(15, 23, 42, 0.6);
+      background-color: rgba(30, 41, 59, 0.8);
       color: var(--text-main);
       padding: 0.4rem 0.8rem;
       border-radius: 0.375rem;
       font-size: 0.875rem;
       border: 1px solid var(--border);
-      backdrop-filter: blur(4px);
     }
 
     footer {
@@ -271,8 +270,7 @@
       padding: 2rem;
       color: var(--text-muted);
       font-size: 0.875rem;
-      background-color: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(8px);
+      background-color: rgba(15, 23, 42, 0.9);
     }
 
     @media (max-width: 640px) {
@@ -297,7 +295,7 @@
 
   <main class="container">
 
-    <!-- 1. PRÉSENTATION / À PROPOS -->
+    <!-- 1. PRÉSENTATION / PROFIL (Avec image de fond) -->
     <section class="about-section" id="about">
       <div class="badge">Étudiant Ingénieur en Santé & IA</div>
       <h1>Maxence Olivier</h1>
