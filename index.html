@@ -157,21 +157,6 @@
       background: #0b3b30;
     }
 
-    .avatar-badge {
-      position: absolute;
-      right: -2px;
-      bottom: 10px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      border: 3px solid rgba(15, 23, 42, 0.6);
-    }
-
     .profile h2 {
       font-size: 1.35rem;
       font-weight: 800;
@@ -267,14 +252,19 @@
 
     .edu-item {
       display: flex;
+      align-items: center;
       gap: 1rem;
       margin-bottom: 0.9rem;
     }
 
-    .edu-item i {
-      color: rgba(255,255,255,0.85);
-      font-size: 1.15rem;
-      margin-top: 0.3rem;
+    .school-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 4px;
+      flex-shrink: 0;
     }
 
     .edu-item strong {
@@ -319,13 +309,34 @@
       padding: 0.5rem 0 0.5rem 1.25rem;
     }
 
+    .card-header-with-logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-header-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 4px;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .card-header-content {
+      width: 100%;
+    }
+
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 0.5rem;
     }
 
     .card-title { font-size: 1.2rem; font-weight: 700; }
@@ -397,7 +408,6 @@
       <div class="profile">
         <div class="avatar-wrap">
           <img class="avatar" src="./photo_de_profil.jpeg" alt="Photo de Maxence Olivier">
-          <div class="avatar-badge">🎓</div>
         </div>
         <h2>Maxence Olivier</h2>
         <div class="role">Élève Ingénieur</div>
@@ -431,15 +441,15 @@
           <div>
             <h3>Formation</h3>
             <div class="edu-item">
-              <i class="fas fa-graduation-cap"></i>
+              <img src="./EPISEN_logo-RVB.jpg" alt="Logo EPISEN" class="school-logo">
               <div><strong>Ingénieur ITS – Spécialité IA</strong><span>EPISEN – UPEC</span></div>
             </div>
             <div class="edu-item">
-              <i class="fas fa-graduation-cap"></i>
+              <img src="./cropped-Lyce_e-du-Hainaut-OF-20170123.png" alt="Logo Lycée du Hainaut" class="school-logo">
               <div><strong>CPGE TSI</strong><span>Lycée du Hainaut, Valenciennes</span></div>
             </div>
             <div class="edu-item">
-              <i class="fas fa-graduation-cap"></i>
+              <img src="./logo-Paul-Duez-Cambrai.jpeg" alt="Logo Lycée Paul Duez" class="school-logo">
               <div><strong>BAC STI2D</strong><span>Lycée Paul Duez, Cambrai</span></div>
             </div>
           </div>
@@ -456,32 +466,47 @@
       <div class="stack-list">
 
         <div class="card-item">
-          <div class="card-header">
-            <span class="card-title">Formation ITS (Ingénieur en Technologies pour la Santé)</span>
-            <span class="card-date">2025 - 2028</span>
+          <div class="card-header-with-logo">
+            <img src="./EPISEN_logo-RVB.jpg" alt="Logo EPISEN" class="card-header-logo">
+            <div class="card-header-content">
+              <div class="card-header">
+                <span class="card-title">Formation ITS (Ingénieur en Technologies pour la Santé)</span>
+                <span class="card-date">2025 - 2028</span>
+              </div>
+              <p class="card-sub">
+                <a href="https://www.linkedin.com/search/results/all/?keywords=EPISEN%20-%20ITS&origin=ENTITY_SEARCH_HOME_HISTORY&heroEntityKey=urn%3Ali%3Aorganization%3A27210886" target="_blank" rel="noopener noreferrer" class="inline-link">EPISEN</a>
+                • École rattachée à l'<a href="https://www.linkedin.com/groups/156064/" target="_blank" rel="noopener noreferrer" class="inline-link">UPEC</a>
+              </p>
+            </div>
           </div>
-          <p class="card-sub">
-            <a href="https://www.linkedin.com/search/results/all/?keywords=EPISEN%20-%20ITS&origin=ENTITY_SEARCH_HOME_HISTORY&heroEntityKey=urn%3Ali%3Aorganization%3A27210886" target="_blank" rel="noopener noreferrer" class="inline-link">EPISEN</a>
-            • École rattachée à l'<a href="https://www.linkedin.com/groups/156064/" target="_blank" rel="noopener noreferrer" class="inline-link">UPEC</a>
-          </p>
           <p><strong>Spécialité :</strong> Intelligence Artificielle</p>
         </div>
 
         <div class="card-item">
-          <div class="card-header">
-            <span class="card-title">CPGE TSI (Classe Préparatoire aux Grandes Écoles)</span>
-            <span class="card-date">2023 - 2025</span>
+          <div class="card-header-with-logo">
+            <img src="./cropped-Lyce_e-du-Hainaut-OF-20170123.png" alt="Logo Lycée du Hainaut" class="card-header-logo">
+            <div class="card-header-content">
+              <div class="card-header">
+                <span class="card-title">CPGE TSI (Classe Préparatoire aux Grandes Écoles)</span>
+                <span class="card-date">2023 - 2025</span>
+              </div>
+              <p class="card-sub">Lycée du Hainaut, Valenciennes</p>
+            </div>
           </div>
-          <p class="card-sub">Lycée du Hainaut, Valenciennes</p>
           <p>Technologie et Sciences Industrielles</p>
         </div>
 
         <div class="card-item">
-          <div class="card-header">
-            <span class="card-title">BAC STI2D</span>
-            <span class="card-date">2023</span>
+          <div class="card-header-with-logo">
+            <img src="./logo-Paul-Duez-Cambrai.jpeg" alt="Logo Lycée Paul Duez" class="card-header-logo">
+            <div class="card-header-content">
+              <div class="card-header">
+                <span class="card-title">BAC STI2D</span>
+                <span class="card-date">2023</span>
+              </div>
+              <p class="card-sub">Lycée Paul Duez, Cambrai</p>
+            </div>
           </div>
-          <p class="card-sub">Lycée Paul Duez, Cambrai</p>
           <p>Spécialité Architecture et Construction</p>
         </div>
 
