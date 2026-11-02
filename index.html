@@ -31,9 +31,13 @@
       flex-direction: column;
     }
 
-    /* ZONE DU HAUT : Image plein écran agrandie */
+    /* ZONE HERO / PROFIL AGRANDIE EN HAUTEUR */
     .hero-wrapper {
       width: 100%;
+      min-height: 85vh; /* Force la zone à occuper au moins 85% de la hauteur de l'écran */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.88)), url("fond_d'écran_portfolio.jpg") no-repeat center center;
       background-size: cover;
       border-bottom: 1px solid var(--border);
@@ -82,12 +86,12 @@
       color: var(--primary);
     }
 
-    /* Section Profil agrandie */
+    /* Section Profil avec grand rembourrage (push le reste du site vers le bas) */
     .about-section {
       text-align: center;
-      padding: 5rem 1.5rem 6rem;
+      padding: 6rem 1.5rem 8rem; /* Rembourrage fortement augmenté */
       max-width: 900px;
-      margin: 0 auto;
+      margin: auto;
     }
 
     .badge {
@@ -104,17 +108,17 @@
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 3.25rem;
       margin-bottom: 1.25rem;
       font-weight: 800;
       text-shadow: 0 2px 6px rgba(0,0,0,0.9);
     }
 
     .about-text {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       color: var(--text-main);
       max-width: 800px;
-      margin: 0 auto 2rem;
+      margin: 0 auto 2.5rem;
       text-shadow: 0 1px 4px rgba(0,0,0,0.9);
       line-height: 1.8;
     }
@@ -147,7 +151,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.75rem 1.5rem;
+      padding: 0.8rem 1.75rem;
       border-radius: 0.5rem;
       font-weight: 600;
       font-size: 1rem;
@@ -165,16 +169,16 @@
       color: white;
     }
 
-    /* RESTE DU SITE */
+    /* RESTE DU SITE (SITUE BIEN EN DESSOUS DE L'IMAGE) */
     .container {
       max-width: 900px;
       width: 100%;
       margin: 0 auto;
-      padding: 3.5rem 1.5rem;
+      padding: 4rem 1.5rem;
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 3.5rem;
+      gap: 4rem;
     }
 
     section {
@@ -195,7 +199,6 @@
       padding-bottom: 0.75rem;
     }
 
-    /* Listes Formations & Projets */
     .stack-list {
       display: flex;
       flex-direction: column;
@@ -245,7 +248,6 @@
       text-decoration: underline;
     }
 
-    /* Compétences */
     .skills-container {
       display: flex;
       flex-direction: column;
@@ -284,7 +286,8 @@
 
     @media (max-width: 640px) {
       h1 { font-size: 2.2rem; }
-      .container { padding: 2rem 1rem; gap: 2.5rem; }
+      .hero-wrapper { min-height: 70vh; }
+      .container { padding: 2.5rem 1rem; gap: 3rem; }
       .about-section { padding: 3.5rem 1rem 4rem; }
       .about-text { font-size: 1rem; }
     }
@@ -292,7 +295,7 @@
 </head>
 <body>
 
-  <!-- PARTIE HAUTE AVEC L'IMAGE ET TEXTE AGRANDI -->
+  <!-- DÉBUT DE LA ZONE HERO PADDING & HAUTEUR AGRANDIS -->
   <div class="hero-wrapper">
     <header>
       <nav>
@@ -328,7 +331,7 @@
     </section>
   </div>
 
-  <!-- LE RESTE DU SITE SUR FOND SOMBRE CLASSIQUE -->
+  <!-- LE RESTE DU SITE SUR FOND SOMBRE CLASSIQUE EN DESSOUS -->
   <main class="container">
 
     <!-- 2. FORMATIONS -->
