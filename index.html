@@ -204,6 +204,15 @@
       width: 20px;
     }
 
+    .inline-link {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .inline-link:hover {
+      text-decoration: underline;
+    }
+
     footer {
       border-top: 1px solid var(--border);
       text-align: center;
@@ -238,7 +247,7 @@
       <p class="subtitle">Étudiant ingénieur en technologies pour la santé spécialisé en intelligence artificielle.</p>
       
       <div class="social-links">
-        <a href="https://www.linkedin.com/in/olivier-maxence" target="_blank" class="btn btn-primary">
+        <a href="https://www.linkedin.com/in/olivier-maxence" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
           <i class="fab fa-linkedin"></i> LinkedIn
         </a>
         <a href="mailto:maxenceolivier2@gmail.com" class="btn btn-secondary">
@@ -253,7 +262,16 @@
         <h2><i class="fas fa-graduation-cap"></i> Formation</h2>
         <ul class="info-list">
           <li><strong>ITS (Ingénieur Technologies Santé)</strong></li>
-          <li>EPISEN - Université Paris-Est Créteil (2025-2028)</li>
+          <li>
+            <a href="https://www.linkedin.com/search/results/all/?keywords=EPISEN%20-%20ITS&origin=ENTITY_SEARCH_HOME_HISTORY&heroEntityKey=urn%3Ali%3Aorganization%3A27210886" target="_blank" rel="noopener noreferrer" class="inline-link">
+              EPISEN
+            </a> 
+            • 
+            <a href="https://www.linkedin.com/groups/156064/" target="_blank" rel="noopener noreferrer" class="inline-link">
+              UPEC
+            </a> 
+            (2025-2028)
+          </li>
           <li>Spécialité : Intelligence Artificielle</li>
           <li style="margin-top: 0.5rem;"><strong>CPGE TSI</strong> (2023-2025)</li>
           <li>Lycée du Hainaut, Valenciennes</li>
@@ -288,4 +306,24 @@
       <!-- Contact -->
       <div class="card" id="contact">
         <h2><i class="fas fa-address-card"></i> Contact</h2>
-        <ul class="info-
+        <ul class="info-list">
+          <li><i class="fas fa-envelope"></i> maxenceolivier2@gmail.com</li>
+          <li><i class="fas fa-phone"></i> +33 07 69 34 86 11</li>
+          <li><i class="fas fa-map-marker-alt"></i> Orly, Île-de-France</li>
+          <li>
+            <i class="fab fa-linkedin"></i> 
+            <a href="https://www.linkedin.com/in/olivier-maxence" target="_blank" rel="noopener noreferrer" class="inline-link">
+              linkedin.com/in/olivier-maxence
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Maxence Olivier. Tous droits réservés.</p>
+  </footer>
+
+</body>
+</html>
