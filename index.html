@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maxence Olivier | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      background-color: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      flex: 1;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 0 4rem;
+    }
+
+    .badge {
+      background-color: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+
+    h1 {
+      font-size: 2.75rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin-bottom: 2rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--border);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      background-color: var(--bg-dark);
+      color: var(--text-muted);
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.375rem;
+      font-size: 0.85rem;
+      border: 1px solid var(--border);
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      margin-bottom: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .info-list i {
+      color: var(--primary);
+      width: 20px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 2rem; }
+      .subtitle { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">Maxence Olivier</div>
+      <ul class="nav-links">
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="about">
+      <div class="badge">EPISEN • Spécialité Intelligence Artificielle</div>
+      <h1>Maxence Olivier</h1>
+      <p class="subtitle">Étudiant ingénieur en technologies pour la santé spécialisé en intelligence artificielle.</p>
+      
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/olivier-maxence" target="_blank" class="btn btn-primary">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="mailto:maxenceolivier2@gmail.com" class="btn btn-secondary">
+          <i class="fas fa-envelope"></i> Me contacter
+        </a>
+      </div>
+    </section>
+
+    <div class="grid">
+      <!-- Formation & Profil -->
+      <div class="card">
+        <h2><i class="fas fa-graduation-cap"></i> Formation</h2>
+        <ul class="info-list">
+          <li><strong>ITS (Ingénieur Technologies Santé)</strong></li>
+          <li>EPISEN - Université Paris-Est Créteil (2025-2028)</li>
+          <li>Spécialité : Intelligence Artificielle</li>
+          <li style="margin-top: 0.5rem;"><strong>CPGE TSI</strong> (2023-2025)</li>
+          <li>Lycée du Hainaut, Valenciennes</li>
+        </ul>
+      </div>
+
+      <!-- Compétences Techniques -->
+      <div class="card" id="competences">
+        <h2><i class="fas fa-code"></i> Langages & Outils</h2>
+        <p style="color: var(--text-muted);">Langages informatiques maîtrisés :</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Dart (Flutter)</span>
+          <span class="tag">Matlab</span>
+          <span class="tag">HTML</span>
+        </div>
+        <p style="color: var(--text-muted); margin-top: 1rem;">Logiciels & Environnements :</p>
+        <div class="tags">
+          <span class="tag">VS Code</span>
+          <span class="tag">Android Studio</span>
+          <span class="tag">Git / GitHub</span>
+          <span class="tag">GNS3 / Cisco</span>
+        </div>
+      </div>
+
+      <!-- Projets à venir -->
+      <div class="card">
+        <h2><i class="fas fa-folder-open"></i> Projets</h2>
+        <p style="color: var(--text-muted);">Les projets académiques (Projet MESPI - Brassard connecté, Projet Scrum - Suivi post-opératoire) et personnels seront détaillés très prochainement sur ce portfolio.</p>
+      </div>
+
+      <!-- Contact -->
+      <div class="card" id="contact">
+        <h2><i class="fas fa-address-card"></i> Contact</h2>
+        <ul class="info-
