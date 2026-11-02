@@ -31,18 +31,18 @@
       flex-direction: column;
     }
 
-    /* ZONE AVEC IMAGE EN FOND (Bannière + Profil) */
-    .hero-header-wrapper {
-      background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.85)), url("fond_d'écran_portfolio.jpg") no-repeat center center;
+    /* ZONE DU HAUT : Image plein écran (touche les côtés) */
+    .hero-wrapper {
+      width: 100%;
+      background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.85)), url("fond_d'écran_portfolio.jpg") no-repeat center center;
       background-size: cover;
       border-bottom: 1px solid var(--border);
     }
 
-    /* Navigation transparente */
+    /* Navigation totalement transparente */
     header {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding: 1.5rem 2rem;
-      background-color: transparent;
+      background: transparent;
       position: sticky;
       top: 0;
       z-index: 10;
@@ -82,10 +82,10 @@
       color: var(--primary);
     }
 
-    /* 1. Présentation / Profil dans l'image */
+    /* Section Profil intégrée dans l'image */
     .about-section {
       text-align: center;
-      padding: 3.5rem 1.5rem 4.5rem;
+      padding: 3rem 1.5rem 4.5rem;
       max-width: 900px;
       margin: 0 auto;
     }
@@ -193,7 +193,7 @@
       padding-bottom: 0.75rem;
     }
 
-    /* Éléments empilés (Formations & Projets) */
+    /* Listes Formations & Projets */
     .stack-list {
       display: flex;
       flex-direction: column;
@@ -289,8 +289,8 @@
 </head>
 <body>
 
-  <!-- ENGLEBE LA BANNIÈRE + LA PRÉSENTATION -->
-  <div class="hero-header-wrapper">
+  <!-- PARTIE HAUTE AVEC L'IMAGE QUI PREND TOUTE LA LARGEUR ET S'ARRÊTE AVANT LES FORMATIONS -->
+  <div class="hero-wrapper">
     <header>
       <nav>
         <div class="logo">Maxence Olivier</div>
@@ -325,7 +325,7 @@
     </section>
   </div>
 
-  <!-- LE RESTE DU SITE SUR FOND SOMBRE CLASSIQUE -->
+  <!-- LE RESTE DU SITE SUR FOND SOMBRES SANS IMAGE -->
   <main class="container">
 
     <!-- 2. FORMATIONS -->
