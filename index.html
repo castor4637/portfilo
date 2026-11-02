@@ -5,171 +5,291 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maxence Olivier | Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #38bdf8;
-      --primary-hover: #0284c7;
-      --bg-dark: #0f172a;
+      --primary: #10b981;
+      --primary-hover: #059669;
+      --bg: #ffffff;
+      --bg-card: #f1f5f9;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border: rgba(15, 23, 42, 0.12);
+      --nav-bg: #ffffff;
+      --hero-1: #022c22;
+      --hero-2: #064e3b;
+      --hero-3: #065f46;
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
       --text-main: #f8fafc;
       --text-muted: #cbd5e1;
       --border: rgba(255, 255, 255, 0.15);
+      --nav-bg: #0f172a;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
     body {
-      background-color: var(--bg-dark);
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background-color: var(--bg);
       color: var(--text-main);
       line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      transition: background-color 0.3s, color 0.3s;
     }
 
-    /* ZONE HERO / PROFIL AGRANDIE EN HAUTEUR */
-    .hero-wrapper {
-      width: 100%;
-      min-height: 85vh; /* Force la zone à occuper au moins 85% de la hauteur de l'écran */
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.88)), url("fond_d'écran_portfolio.jpg") no-repeat center center;
-      background-size: cover;
-      border-bottom: 1px solid var(--border);
-    }
-
-    /* Navigation transparente */
+    /* ===== NAVBAR BLANCHE ===== */
     header {
-      padding: 1.5rem 2rem;
-      background: transparent;
       position: sticky;
       top: 0;
-      z-index: 10;
-      backdrop-filter: blur(4px);
+      z-index: 50;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      transition: background-color 0.3s;
     }
 
     nav {
-      max-width: 900px;
+      max-width: 1300px;
       margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
+      padding: 1.1rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
     }
 
     .logo {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      color: var(--primary);
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      color: var(--text-main);
+      text-decoration: none;
     }
 
     .nav-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
       list-style: none;
     }
 
     .nav-links a {
       color: var(--text-main);
       text-decoration: none;
-      transition: color 0.2s;
-      font-weight: 500;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.9);
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    /* Section Profil avec grand rembourrage (push le reste du site vers le bas) */
-    .about-section {
-      text-align: center;
-      padding: 6rem 1.5rem 8rem; /* Rembourrage fortement augmenté */
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .badge {
-      display: inline-block;
-      background-color: rgba(56, 189, 248, 0.2);
-      color: var(--primary);
-      padding: 0.5rem 1.25rem;
-      border-radius: 9999px;
-      font-size: 0.95rem;
       font-weight: 600;
-      margin-bottom: 1.5rem;
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      backdrop-filter: blur(4px);
+      font-size: 1.05rem;
+      transition: color 0.2s;
     }
 
-    h1 {
-      font-size: 3.25rem;
-      margin-bottom: 1.25rem;
-      font-weight: 800;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.9);
-    }
+    .nav-links a:hover { color: var(--primary); }
 
-    .about-text {
-      font-size: 1.2rem;
-      color: var(--text-main);
-      max-width: 800px;
-      margin: 0 auto 2.5rem;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
-      line-height: 1.8;
-    }
-
-    .contact-info {
+    .nav-actions {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 1.5rem;
-      font-size: 1rem;
-      color: var(--text-muted);
-      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+      justify-content: flex-end;
+      gap: 1.5rem;
     }
 
-    .contact-info div {
+    .icon-btn {
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.15rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .icon-btn:hover { color: var(--primary); }
+
+    /* ===== HERO VERT AVEC RELIEFS ===== */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--hero-1) 0%, var(--hero-2) 55%, var(--hero-3) 100%);
+      color: #fff;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* Colonne profil */
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      width: 190px;
+      height: 190px;
+      margin-bottom: 1.1rem;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(15, 23, 42, 0.85);
+      background: #0b3b30;
+    }
+
+    .avatar-badge {
+      position: absolute;
+      right: -2px;
+      bottom: 10px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #000;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-    }
-
-    .social-buttons {
-      display: flex;
       justify-content: center;
-      gap: 1.25rem;
-      margin-top: 2rem;
+      font-size: 1.4rem;
+      border: 3px solid rgba(15, 23, 42, 0.6);
     }
 
-    .btn {
+    .profile h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .profile .role {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-top: 0.4rem;
+    }
+
+    .profile .org {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .socials {
+      display: flex;
+      gap: 1.1rem;
+      margin-top: 1.4rem;
+      font-size: 1.45rem;
+    }
+
+    .socials a {
+      color: #fff;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .socials a:hover {
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Colonne texte */
+    .about h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1.4rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .about p {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.92);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .btn-cv {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.8rem 1.75rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      font-size: 1rem;
+      margin-top: 1.6rem;
+      padding: 0.7rem 1.4rem;
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 0.6rem;
+      color: #cbd5e1;
       text-decoration: none;
-      transition: all 0.2s;
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s;
     }
 
-    .btn-primary {
-      background-color: var(--primary);
-      color: #0f172a;
+    .btn-cv:hover {
+      background: var(--primary);
+      color: #04251c;
     }
 
-    .btn-primary:hover {
-      background-color: var(--primary-hover);
-      color: white;
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
     }
 
-    /* RESTE DU SITE (SITUE BIEN EN DESSOUS DE L'IMAGE) */
+    .info-grid h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 0.9rem;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .interests-list { padding-left: 1.4rem; }
+
+    .interests-list li {
+      font-size: 1.1rem;
+      margin-bottom: 0.45rem;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .interests-list li::marker { color: var(--primary); }
+
+    .edu-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .edu-item i {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.15rem;
+      margin-top: 0.3rem;
+    }
+
+    .edu-item strong {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .edu-item span {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* ===== RESTE DU SITE ===== */
     .container {
       max-width: 900px;
       width: 100%;
@@ -181,14 +301,7 @@
       gap: 4rem;
     }
 
-    section {
-      background: transparent;
-      border: none;
-      padding: 0;
-      width: 100%;
-    }
-
-    section h2 {
+    section h2.section-title {
       font-size: 1.6rem;
       margin-bottom: 1.75rem;
       display: flex;
@@ -199,75 +312,35 @@
       padding-bottom: 0.75rem;
     }
 
-    .stack-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.75rem;
-    }
+    .stack-list { display: flex; flex-direction: column; gap: 1.75rem; }
 
     .card-item {
-      background: transparent;
       border-left: 3px solid var(--primary);
       padding: 0.5rem 0 0.5rem 1.25rem;
-      width: 100%;
     }
 
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
       margin-bottom: 0.5rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
     }
 
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
+    .card-title { font-size: 1.2rem; font-weight: 700; }
+    .card-date { color: var(--primary); font-size: 0.95rem; font-weight: 600; }
+    .card-sub { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.75rem; }
 
-    .card-date {
-      color: var(--primary);
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
+    .inline-link { color: var(--primary); text-decoration: none; }
+    .inline-link:hover { text-decoration: underline; }
 
-    .card-sub {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .inline-link {
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    .inline-link:hover {
-      text-decoration: underline;
-    }
-
-    .skills-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1.75rem;
-    }
-
-    .skill-category h3 {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+    .skills-container { display: flex; flex-direction: column; gap: 1.75rem; }
+    .skill-category h3 { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
     .tag {
-      background-color: rgba(30, 41, 59, 0.8);
+      background-color: var(--bg-card);
       color: var(--text-main);
       padding: 0.4rem 0.85rem;
       border-radius: 0.375rem;
@@ -281,71 +354,117 @@
       padding: 2rem;
       color: var(--text-muted);
       font-size: 0.875rem;
-      background-color: rgba(15, 23, 42, 0.95);
     }
 
-    @media (max-width: 640px) {
-      h1 { font-size: 2.2rem; }
-      .hero-wrapper { min-height: 70vh; }
-      .container { padding: 2.5rem 1rem; gap: 3rem; }
-      .about-section { padding: 3.5rem 1rem 4rem; }
-      .about-text { font-size: 1rem; }
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav { grid-template-columns: 1fr auto; }
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; padding: 3rem 1.5rem 4rem; }
+      .info-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about { text-align: left; }
     }
   </style>
 </head>
 <body>
 
-  <!-- DÉBUT DE LA ZONE HERO PADDING & HAUTEUR AGRANDIS -->
-  <div class="hero-wrapper">
-    <header>
-      <nav>
-        <div class="logo">Maxence Olivier</div>
-        <ul class="nav-links">
-          <li><a href="#about">À propos</a></li>
-          <li><a href="#formations">Formations</a></li>
-          <li><a href="#projets">Projets</a></li>
-          <li><a href="#competences">Compétences</a></li>
-        </ul>
-      </nav>
-    </header>
+  <header>
+    <nav>
+      <a href="#about" class="logo">Maxence Olivier</a>
+      <ul class="nav-links">
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#formations">Formations</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#competences">Compétences</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" aria-label="Changer de thème"><i class="far fa-moon"></i></button>
+      </div>
+    </nav>
+  </header>
 
-    <section class="about-section" id="about">
-      <div class="badge">Élève Ingénieur en Technologies pour la Santé & IA</div>
-      <h1>Maxence Olivier</h1>
-      
-      <p class="about-text">
-        Bienvenue sur mon portfolio ! Passionné par la convergence entre le génie biomédical et les nouvelles technologies, je suis actuellement élève ingénieur à l'EPISEN (UPEC) avec une spécialisation poussée en Intelligence Artificielle. Mon objectif est de concevoir des solutions innovantes, intelligentes et connectées pour répondre aux défis majeurs du domaine de la santé et améliorer le suivi médical au quotidien.
-      </p>
+  <!-- HERO -->
+  <div class="hero" id="about">
+    <!-- Reliefs en arrière-plan -->
+    <svg class="hero-bg" viewBox="0 0 1300 700" preserveAspectRatio="none" aria-hidden="true">
+      <polygon points="0,200 250,120 520,230 880,90 1300,260 1300,0 0,0" fill="#022c22" opacity="0.7"/>
+      <polygon points="0,330 300,230 600,360 950,200 1300,400 1300,700 0,700" fill="#064e3b" opacity="0.55"/>
+      <polygon points="0,520 350,440 600,640 900,470 1300,560 1300,700 0,700" fill="#047857" opacity="0.35"/>
+    </svg>
 
-      <div class="contact-info">
-        <div><i class="fas fa-envelope" style="color: var(--primary);"></i> maxenceolivier2@gmail.com</div>
-        <div><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> Orly, Île-de-France</div>
-        <div><i class="fas fa-user-grad" style="color: var(--primary);"></i> 21 ans</div>
+    <div class="hero-inner">
+      <!-- Colonne gauche : profil -->
+      <div class="profile">
+        <div class="avatar-wrap">
+          <img class="avatar" src="photo_de_profil.png" alt="Photo de Maxence Olivier">
+          <div class="avatar-badge">🎓</div>
+        </div>
+        <h2>Maxence Olivier</h2>
+        <div class="role">Élève Ingénieur</div>
+        <div class="org">EPISEN – UPEC</div>
+
+        <div class="socials">
+          <a href="mailto:maxenceolivier2@gmail.com" aria-label="Email"><i class="fas fa-at"></i></a>
+          <a href="https://www.linkedin.com/in/olivier-maxence" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <!-- Ajoute ton GitHub ici :
+          <a href="https://github.com/TON_PSEUDO" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          -->
+        </div>
       </div>
 
-      <div class="social-buttons">
-        <a href="https://www.linkedin.com/in/olivier-maxence" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          <i class="fab fa-linkedin"></i> Mon Profil LinkedIn
-        </a>
+      <!-- Colonne droite : à propos -->
+      <div class="about">
+        <h1>À propos de moi</h1>
+        <p>
+          Passionné par la convergence entre le génie biomédical et les nouvelles technologies, je suis élève ingénieur à l'EPISEN (UPEC) avec une spécialisation en Intelligence Artificielle. Mon objectif : concevoir des solutions innovantes, intelligentes et connectées pour répondre aux défis de la santé et améliorer le suivi médical au quotidien.
+        </p>
+
+        <a href="cv_maxence_olivier.pdf" class="btn-cv" download><i class="fas fa-download"></i> Télécharger mon CV</a>
+
+        <div class="info-grid">
+          <div>
+            <h3>Centres d'intérêt</h3>
+            <ul class="interests-list">
+              <li>Intelligence Artificielle</li>
+              <li>Génie biomédical</li>
+              <li>Objets connectés & santé</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Formation</h3>
+            <div class="edu-item">
+              <i class="fas fa-graduation-cap"></i>
+              <div><strong>Ingénieur ITS – Spécialité IA</strong><span>EPISEN – UPEC</span></div>
+            </div>
+            <div class="edu-item">
+              <i class="fas fa-graduation-cap"></i>
+              <div><strong>CPGE TSI</strong><span>Lycée du Hainaut, Valenciennes</span></div>
+            </div>
+            <div class="edu-item">
+              <i class="fas fa-graduation-cap"></i>
+              <div><strong>BAC STI2D</strong><span>Lycée Paul Duez, Cambrai</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   </div>
 
-  <!-- LE RESTE DU SITE SUR FOND SOMBRE CLASSIQUE EN DESSOUS -->
   <main class="container">
 
-    <!-- 2. FORMATIONS -->
+    <!-- FORMATIONS -->
     <section id="formations">
-      <h2><i class="fas fa-graduation-cap"></i> Formations & Diplômes</h2>
+      <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Formations & Diplômes</h2>
       <div class="stack-list">
-        
+
         <div class="card-item">
           <div class="card-header">
             <span class="card-title">Formation ITS (Ingénieur en Technologies pour la Santé)</span>
             <span class="card-date">2025 - 2028</span>
           </div>
           <p class="card-sub">
-            <a href="https://www.linkedin.com/search/results/all/?keywords=EPISEN%20-%20ITS&origin=ENTITY_SEARCH_HOME_HISTORY&heroEntityKey=urn%3Ali%3Aorganization%3A27210886" target="_blank" rel="noopener noreferrer" class="inline-link">EPISEN</a> 
+            <a href="https://www.linkedin.com/search/results/all/?keywords=EPISEN%20-%20ITS&origin=ENTITY_SEARCH_HOME_HISTORY&heroEntityKey=urn%3Ali%3Aorganization%3A27210886" target="_blank" rel="noopener noreferrer" class="inline-link">EPISEN</a>
             • École rattachée à l'<a href="https://www.linkedin.com/groups/156064/" target="_blank" rel="noopener noreferrer" class="inline-link">UPEC</a>
           </p>
           <p><strong>Spécialité :</strong> Intelligence Artificielle</p>
@@ -372,9 +491,9 @@
       </div>
     </section>
 
-    <!-- 3. PROJETS -->
+    <!-- PROJETS -->
     <section id="projets">
-      <h2><i class="fas fa-folder-open"></i> Mes Projets</h2>
+      <h2 class="section-title"><i class="fas fa-folder-open"></i> Mes Projets</h2>
       <div class="stack-list">
 
         <div class="card-item">
@@ -410,9 +529,9 @@
       </div>
     </section>
 
-    <!-- 4. COMPÉTENCES -->
+    <!-- COMPÉTENCES -->
     <section id="competences">
-      <h2><i class="fas fa-code"></i> Compétences & Langues</h2>
+      <h2 class="section-title"><i class="fas fa-code"></i> Compétences & Langues</h2>
       <div class="skills-container">
 
         <div class="skill-category">
@@ -453,5 +572,25 @@
     <p>&copy; 2026 Maxence Olivier. Tous droits réservés.</p>
   </footer>
 
+  <script>
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    const icon = btn.querySelector('i');
+
+    function applyTheme(t) {
+      root.setAttribute('data-theme', t);
+      icon.className = t === 'dark' ? 'far fa-sun' : 'far fa-moon';
+    }
+
+    let saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    applyTheme(saved || 'light');
+
+    btn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  </script>
 </body>
 </html>
