@@ -313,18 +313,18 @@
     .card-header-with-logo {
       display: flex;
       align-items: center;
-      gap: 1.8rem;
+      gap: 2rem;
       margin-bottom: 0.75rem;
     }
 
-    /* RECTANGLE PANORAMIQUE EN LONGUEUR POUR LES LOGOS (160px x 70px) */
+    /* RECTANGLE BIEN ALLONGÉ SUR LA LONGUEUR (240px x 80px) */
     .card-logo {
-      width: 160px;
-      height: 70px;
+      width: 240px;
+      height: 80px;
       object-fit: contain;
       background: #ffffff;
       border-radius: 10px;
-      padding: 4px 8px;
+      padding: 6px 12px;
       border: 1px solid var(--border);
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       flex-shrink: 0;
@@ -379,6 +379,7 @@
       .info-grid { grid-template-columns: 1fr; gap: 2rem; }
       .about { text-align: left; }
       .card-header-with-logo { flex-direction: column; align-items: flex-start; }
+      .card-logo { width: 100%; max-width: 240px; }
     }
   </style>
 </head>
