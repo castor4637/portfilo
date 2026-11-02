@@ -259,8 +259,8 @@
     }
 
     .logo-inline {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       object-fit: contain;
       background: #ffffff;
       border-radius: 8px;
@@ -280,7 +280,7 @@
       color: rgba(255,255,255,0.75);
     }
 
-    /* ===== CONTENU PRINCIPAL ÉLARGIE À 90% (MAX 1400PX) ===== */
+    /* ===== CONTENU PRINCIPAL ===== */
     .container {
       width: 90%;
       max-width: 1400px;
@@ -313,20 +313,20 @@
     .card-header-with-logo {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.8rem;
       margin-bottom: 0.75rem;
     }
 
-    /* NOUVELLE TAILLE DES LOGOS : 75px DE LARGEUR ET HAUTEUR */
+    /* TAILLE DES LOGOS AGRANDIE À 110PX */
     .card-logo {
-      width: 75px;
-      height: 75px;
+      width: 110px;
+      height: 85px;
       object-fit: contain;
       background: #ffffff;
       border-radius: 12px;
       padding: 8px;
       border: 1px solid var(--border);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       flex-shrink: 0;
     }
 
@@ -343,7 +343,7 @@
       width: 100%;
     }
 
-    .card-title { font-size: 1.3rem; font-weight: 700; }
+    .card-title { font-size: 1.35rem; font-weight: 700; }
     .card-date { color: var(--primary); font-size: 1.05rem; font-weight: 600; }
     .card-sub { color: var(--text-muted); font-size: 1.05rem; margin-top: 0.2rem; }
 
@@ -378,6 +378,7 @@
       .hero-inner { grid-template-columns: 1fr; }
       .info-grid { grid-template-columns: 1fr; gap: 2rem; }
       .about { text-align: left; }
+      .card-header-with-logo { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -407,7 +408,6 @@
     </svg>
 
     <div class="hero-inner">
-      <!-- Profil sans le badge du chapeau -->
       <div class="profile">
         <div class="avatar-wrap">
           <img class="avatar" src="photo_de_profil.jpeg" alt="Photo de Maxence Olivier">
@@ -422,7 +422,6 @@
         </div>
       </div>
 
-      <!-- À propos -->
       <div class="about">
         <h1>À propos de moi</h1>
         <p>
