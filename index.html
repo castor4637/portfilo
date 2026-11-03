@@ -389,6 +389,12 @@
       flex-shrink: 0;
     }
 
+    .project-img-thumb.contain {
+      object-fit: contain;
+      background-color: var(--bg-card);
+      max-height: 220px;
+    }
+
     .project-text {
       flex: 1;
     }
@@ -804,8 +810,8 @@
           <p class="card-sub">Projet de groupe en école d'ingénieurs (EPISEN / UPEC) • Équipe 7</p>
 
           <div class="project-card-content">
-            <!-- IMAGE DU PROJET POSTOP SUIVI À GAUCHE -->
-            <img src="image_projet_scrum.png" alt="Aperçu de l'interface de l'application PostOp Suivi" class="project-img-thumb">
+            <!-- IMAGE DU PROJET POSTOP SUIVI À GAUCHE (SANS ROIGNAGE) -->
+            <img src="image_projet_scrum.png" alt="Aperçu de l'interface de l'application PostOp Suivi" class="project-img-thumb contain">
 
             <!-- TEXTE À DROITE DE L'IMAGE -->
             <div class="project-text">
