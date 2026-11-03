@@ -369,16 +369,26 @@
     .inline-link { color: var(--primary); text-decoration: none; }
     .inline-link:hover { text-decoration: underline; }
 
-    /* ===== IMAGE PROJET ===== */
-    .project-img-preview {
-      width: 100%;
-      max-width: 650px;
-      margin: 1rem 0;
+    /* ===== CONTENU CARTE AVEC IMAGE À DROITE DU TEXTE ===== */
+    .project-card-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .project-text {
+      flex: 1;
+    }
+
+    .project-img-thumb {
+      width: 280px;
+      max-height: 220px;
+      object-fit: cover;
       border-radius: 0.6rem;
       border: 1px solid var(--border);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      object-fit: cover;
-      display: block;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      flex-shrink: 0;
     }
 
     /* ===== ACCORDEON / DETAILS DES PROJETS ===== */
@@ -469,6 +479,8 @@
       .nav-links { display: none; }
       .card-header-with-logo { flex-direction: column; align-items: flex-start; }
       .card-logo { width: 100%; max-width: 240px; }
+      .project-card-content { flex-direction: column; }
+      .project-img-thumb { width: 100%; max-width: 100%; }
     }
   </style>
 </head>
@@ -618,17 +630,21 @@
           </div>
         </div>
 
-        <!-- PROJET ECUE SYSTEMES DE MESURES NOMADES (AVEC IMAGE, CODE SANS TEXTE CITATION ET ACCÈS FICHIERS) -->
+        <!-- PROJET ECUE SYSTEMES DE MESURES NOMADES -->
         <div class="card-item">
           <div class="card-header">
             <span class="card-title">Projet ECUE Systèmes de Mesures Nomades - IHM MATLAB</span>
             <span class="card-date">2026</span>
           </div>
           <p class="card-sub">Projet de groupe à l'EPISEN (Groupe Star Wars)</p>
-          <p style="margin-top: 0.5rem;">Conception et réalisation d'une chaîne complète de simulation, d'analyse fréquentielle (FFT) et de correction de signaux déformés (erreurs linéaires de gain/offset et non linéaires de type exponentiel/logarithmique) intégrée dans une IHM sous MATLAB App Designer, avec options de débogage et d'exportation (CSV/PDF)[cite: 2, 38].</p>
 
-          <!-- IMAGE DU PROJET APP DESIGNER -->
-          <img src="image_projet_IHM_starwar.png" alt="Aperçu de l'IHM MATLAB App Designer du Projet Star Wars" class="project-img-preview">
+          <div class="project-card-content">
+            <div class="project-text">
+              <p>Conception et réalisation d'une chaîne complète de simulation, d'analyse fréquentielle (FFT) et de correction de signaux déformés (erreurs linéaires de gain/offset et non linéaires de type exponentiel/logarithmique) intégrée dans une IHM sous MATLAB App Designer, avec options de débogage et d'exportation (CSV/PDF)[cite: 2, 38].</p>
+            </div>
+            <!-- IMAGE DU PROJET APP DESIGNER (À DROITE, COMPACTE) -->
+            <img src="image_projet_IHM_starwar.png" alt="Aperçu de l'IHM MATLAB App Designer du Projet Star Wars" class="project-img-thumb">
+          </div>
           
           <div class="tags" style="margin-top: 1rem;">
             <span class="tag">MATLAB</span>
