@@ -522,7 +522,7 @@
       .project-img-thumb { width: 100%; max-width: 100%; }
     }
 
-    /* ===== OPTIMISATION SPECIFIQUE SMARTPHONE (< 768px) ===== */
+    /* ===== OPTIMISATION MOBILE (< 768px) ===== */
     @media (max-width: 768px) {
       html { scroll-padding-top: 60px; }
 
@@ -755,9 +755,94 @@
             <!-- IMAGE DU PROJET APP DESIGNER À GAUCHE -->
             <img src="image_projet_IHM_starwar.png" alt="Aperçu de l'IHM MATLAB App Designer du Projet Star Wars" class="project-img-thumb">
 
+            <!-- TEXTE À DROITE DE L'IMAGE -->
             <div class="project-text">
-              <p>Réalisation d'une application MATLAB App Designer permettant l'acquisition et le traitement de données issues d'un accéléromètre et gyroscope connecté en Bluetooth.</p>
+              <p>Chaîne complète de simulation, d'analyse FFT et de correction de signaux déformés, intégrée dans une IHM MATLAB App Designer.</p>
+
+              <ul class="project-list">
+                <li><strong>Signal :</strong> 3 harmoniques réglables en temps réel.</li>
+                <li><strong>Erreurs :</strong> gain, offset, exponentielle, logarithme, estimées par FFT puis corrigées.</li>
+                <li><strong>IHM :</strong> 7 pages interactives avec bande-son Star Wars.</li>
+                <li><strong>Bonus :</strong> mode « Dark Debug », export CSV et rapport PDF.</li>
+              </ul>
             </div>
+          </div>
+          
+          <div class="tags" style="margin-top: 1rem;">
+            <span class="tag">MATLAB</span>
+            <span class="tag">App Designer</span>
+            <span class="tag">Traitement du signal (FFT)</span>
+            <span class="tag">Capteurs & Mesures</span>
+            <span class="tag">IHM</span>
+            <span class="tag">Régression linéaire</span>
+            <span class="tag">Travail de groupe</span>
+          </div>
+
+          <!-- DÉROULANT POUR ACCÉDER AU RÉSULTAT / CODE / COMPTE RENDU -->
+          <details class="project-details">
+            <summary>
+              <span><i class="fas fa-paperclip"></i> Consulter le projet (Compte-rendu & Code Source)</span>
+              <i class="fas fa-chevron-down"></i>
+            </summary>
+            <div class="project-actions">
+              <a href="compte_rendu_star_wars.pdf" target="_blank" rel="noopener noreferrer" class="btn-action">
+                <i class="fas fa-file-pdf" style="color: #ef4444;"></i> Compte-rendu (PDF)
+              </a>
+              <a href="Projet_MATLAB_Systemes_Mesures_Nomades.zip" download class="btn-action">
+                <i class="fas fa-file-archive" style="color: #eab308;"></i> Code Source MATLAB (.zip)
+              </a>
+            </div>
+          </details>
+        </div>
+
+        <div class="card-item">
+          <div class="card-header">
+            <span class="card-title">Projet Scrum - Application de Suivi Post-Opératoire</span>
+            <span class="card-date">2026 (6 mois)</span>
+          </div>
+          <p class="card-sub">Projet de groupe en école d'ingénieurs</p>
+          <p style="margin-top: 0.5rem;">Application de la méthodologie Agile/Scrum à travers la création d'une application mobile de suivi post-opératoire, en tant que Product Owner (User Stories, Sprint Planning, Daily, Retrospective).</p>
+          <div class="tags" style="margin-top: 1rem;">
+            <span class="tag">Agile / Scrum</span>
+            <span class="tag">Product Owner</span>
+            <span class="tag">Gestion de Produit</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- COMPÉTENCES -->
+    <section id="competences">
+      <h2 class="section-title"><i class="fas fa-code"></i> Compétences & Langues</h2>
+      <div class="skills-container">
+
+        <div class="skill-category">
+          <h3>Langages Informatiques</h3>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Dart (Flutter)</span>
+            <span class="tag">Matlab</span>
+            <span class="tag">HTML</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Logiciels & Environnements</h3>
+          <div class="tags">
+            <span class="tag">Visual Studio Code</span>
+            <span class="tag">Android Studio</span>
+            <span class="tag">Git & GitHub</span>
+            <span class="tag">Cisco</span>
+            <span class="tag">GNS3</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Langues</h3>
+          <div class="tags">
+            <span class="tag">Anglais (Niveau B2)</span>
+            <span class="tag">Allemand (Niveau A2)</span>
           </div>
         </div>
 
@@ -770,5 +855,26 @@
     <p>&copy; 2026 Maxence Olivier. Tous droits réservés.</p>
   </footer>
 
+  <script>
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    const icon = btn.querySelector('i');
+
+    function applyTheme(t) {
+      root.setAttribute('data-theme', t);
+      icon.className = t === 'dark' ? 'far fa-sun' : 'far fa-moon';
+    }
+
+    let saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    // Applique le mode sombre 'dark' par défaut si aucun thème n'a été enregistré
+    applyTheme(saved || 'dark');
+
+    btn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  </script>
 </body>
 </html>
