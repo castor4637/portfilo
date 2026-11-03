@@ -804,13 +804,17 @@
           <p class="card-sub">Projet de groupe en école d'ingénieurs (EPISEN / UPEC) • Équipe 7</p>
 
           <div class="project-card-content">
+            <!-- IMAGE DU PROJET POSTOP SUIVI À GAUCHE -->
+            <img src="image_projet_scrum.png" alt="Aperçu de l'interface de l'application PostOp Suivi" class="project-img-thumb">
+
+            <!-- TEXTE À DROITE DE L'IMAGE -->
             <div class="project-text">
               <p>Conception et développement d'une application web de télésuivi médical à domicile permettant de maintenir le lien entre les patients convalescents et leur équipe soignante en mode Agile/Scrum.</p>
 
               <ul class="project-list">
-                <li><strong>Rôle :</strong> Product Owner (Gestion du backlog, User Stories, Sprint Planning, Dailies & Rétrospectives)[cite: 5].</li>
-                <li><strong>Fonctionnalités :</strong> Questionnaires quotidiens de symptômes, envoi de photos de plaies pour suivi de cicatrisation et alertes intelligentes en cas de risque[cite: 5].</li>
-                <li><strong>Architecture :</strong> Interface dynamique multi-rôles (Espace Patient & Espace Médecin) sécurisée et conforme aux normes de santé[cite: 5].</li>
+                <li><strong>Rôle :</strong> Product Owner (Gestion du backlog, User Stories, Sprint Planning, Dailies & Rétrospectives).</li>
+                <li><strong>Fonctionnalités :</strong> Questionnaires quotidiens de symptômes, envoi de photos de plaies pour suivi de cicatrisation et alertes intelligentes en cas de risque.</li>
+                <li><strong>Architecture :</strong> Interface dynamique multi-rôles (Espace Patient & Espace Médecin) sécurisée et conforme aux normes de santé.</li>
               </ul>
             </div>
           </div>
@@ -899,7 +903,6 @@
 
     let saved = null;
     try { saved = localStorage.getItem('theme'); } catch (e) {}
-    // Applique le mode sombre 'dark' par défaut si aucun thème n'a été enregistré
     applyTheme(saved || 'dark');
 
     btn.addEventListener('click', () => {
