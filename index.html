@@ -372,7 +372,7 @@
     /* ===== DISPOSITION PROJET : IMAGE À GAUCHE, TEXTE À DROITE ===== */
     .project-card-content {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 1.8rem;
       margin-top: 0.75rem;
     }
@@ -389,6 +389,43 @@
 
     .project-text {
       flex: 1;
+    }
+
+    /* Liste détaillée du projet */
+    .project-list {
+      list-style: none;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .project-list li {
+      position: relative;
+      padding-left: 1.4rem;
+      font-size: 0.97rem;
+      color: var(--text-main);
+    }
+
+    .project-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .project-list strong { color: var(--primary); font-weight: 700; }
+
+    .project-list code {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0 0.35rem;
+      font-size: 0.88em;
     }
 
     /* ===== ACCORDEON / DETAILS DES PROJETS ===== */
@@ -636,7 +673,7 @@
             <span class="card-title">Projet ECUE Systèmes de Mesures Nomades - IHM MATLAB</span>
             <span class="card-date">2026</span>
           </div>
-          <p class="card-sub">Projet de groupe à l'EPISEN (Groupe Star Wars)</p>
+          <p class="card-sub">Projet de groupe à l'EPISEN (Groupe Star Wars) • ECUE 325, groupe de 3, encadré par Régis Fournier</p>
 
           <div class="project-card-content">
             <!-- IMAGE DU PROJET APP DESIGNER À GAUCHE -->
@@ -644,7 +681,16 @@
 
             <!-- TEXTE À DROITE DE L'IMAGE -->
             <div class="project-text">
-              <p>Conception et réalisation d'une chaîne complète de simulation, d'analyse fréquentielle (FFT) et de correction de signaux déformés (erreurs linéaires de gain/offset et non linéaires de type exponentiel/logarithmique) intégrée dans une IHM sous MATLAB App Designer, avec options de débogage et d'exportation (CSV/PDF)[cite: 2, 38].</p>
+              <p>Conception et réalisation d'une chaîne complète de simulation, d'analyse fréquentielle (FFT) et de correction de signaux déformés, intégrée dans une IHM sous MATLAB App Designer.</p>
+
+              <ul class="project-list">
+                <li><strong>Génération du signal :</strong> composante continue + 3 harmoniques sinusoïdales, réglables en temps réel (amplitudes, fréquences, fréquence d'échantillonnage jusqu'à 100 Hz).</li>
+                <li><strong>Déformations :</strong> erreurs linéaires (gain, offset, gain + offset, offset + gain) et non linéaires (exponentielle, logarithme).</li>
+                <li><strong>Analyse spectrale :</strong> FFT avec spectre monolatéral, axe des fréquences en Hz et détection automatique de la fréquence fondamentale.</li>
+                <li><strong>Estimation & correction :</strong> mesure du gain et de l'offset à partir du spectre, puis restauration du signal d'origine par la fonction réciproque. Pour le non linéaire, les paramètres sont estimés par régression linéaire (<code>polyfit</code>).</li>
+                <li><strong>IHM :</strong> 7 pages (Accueil, Signal, Erreur, FFT, Estimation, Correction, Option), curseurs grisés selon le mode choisi et bande-son Star Wars à l'accueil.</li>
+                <li><strong>Bonus :</strong> mode « Dark Debug » (composantes affichées séparément), export des données en CSV et rapport d'analyse en PDF.</li>
+              </ul>
             </div>
           </div>
           
@@ -654,6 +700,9 @@
             <span class="tag">Traitement du signal (FFT)</span>
             <span class="tag">Capteurs & Mesures</span>
             <span class="tag">IHM</span>
+            <span class="tag">Régression linéaire</span>
+            <span class="tag">Export CSV/PDF</span>
+            <span class="tag">Travail de groupe</span>
           </div>
 
           <!-- DÉROULANT POUR ACCÉDER AU RÉSULTAT / CODE / COMPTE RENDU -->
