@@ -93,7 +93,8 @@
     .nav-actions {
       display: flex;
       justify-content: flex-end;
-      gap: 1.5rem;
+      align-items: center;
+      gap: 1.2rem;
     }
 
     .icon-btn {
@@ -106,6 +107,26 @@
     }
 
     .icon-btn:hover { color: var(--primary); }
+
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 0.35rem 0.7rem;
+      border-radius: 0.5rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
 
     /* ===== HERO VERT ===== */
     .hero {
@@ -693,12 +714,15 @@
     <nav>
       <a href="#about" class="logo">Maxence Olivier</a>
       <ul class="nav-links">
-        <li><a href="#about">À propos</a></li>
-        <li><a href="#formations">Formations</a></li>
-        <li><a href="#projets">Projets</a></li>
-        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#about" data-i18n="nav.about">À propos</a></li>
+        <li><a href="#formations" data-i18n="nav.education">Formations</a></li>
+        <li><a href="#projets" data-i18n="nav.projects">Projets</a></li>
+        <li><a href="#competences" data-i18n="nav.skills">Compétences</a></li>
       </ul>
       <div class="nav-actions">
+        <button class="lang-btn" id="lang-toggle" aria-label="Changer de langue">
+          <i class="fas fa-globe"></i> <span id="lang-text">EN</span>
+        </button>
         <button class="icon-btn" id="theme-toggle" aria-label="Changer de thème"><i class="far fa-sun"></i></button>
       </div>
     </nav>
@@ -716,26 +740,26 @@
 
       <!-- Texte à gauche -->
       <div class="hero-text-col">
-        <span class="eyebrow">À propos de moi</span>
+        <span class="eyebrow" data-i18n="hero.eyebrow">À propos de moi</span>
         <h1 class="hero-name">Maxence Olivier</h1>
-        <p class="hero-tagline">
+        <p class="hero-tagline" data-i18n="hero.tagline">
           Intelligence Artificielle<span>·</span>Électronique & Robotique<span>·</span>Santé connectée<span>·</span>Python
         </p>
-        <p class="hero-text">
+        <p class="hero-text" data-i18n="hero.text">
           Passionné par la convergence entre l'électronique, la robotique et les nouvelles technologies, je suis élève ingénieur à l'EPISEN (UPEC) avec une spécialisation en Intelligence Artificielle. Mon objectif : concevoir des systèmes matériels innovants, intelligents et des appareils de santé connectés pour relever les défis du suivi médical et de l'assistance au quotidien.
         </p>
 
         <div class="hero-buttons">
-          <a href="#projets" class="btn btn-primary"><i class="fas fa-folder-open"></i> Voir mes projets</a>
-          <a href="cv_maxence_olivier.pdf" class="btn" download><i class="fas fa-download"></i> Télécharger mon CV</a>
-          <a href="mailto:maxenceolivier2@gmail.com" class="btn"><i class="fas fa-envelope"></i> Me contacter</a>
+          <a href="#projets" class="btn btn-primary"><i class="fas fa-folder-open"></i> <span data-i18n="hero.btnProjects">Voir mes projets</span></a>
+          <a href="cv_maxence_olivier.pdf" class="btn" download><i class="fas fa-download"></i> <span data-i18n="hero.btnCv">Télécharger mon CV</span></a>
+          <a href="mailto:maxenceolivier2@gmail.com" class="btn"><i class="fas fa-envelope"></i> <span data-i18n="hero.btnContact">Me contacter</span></a>
         </div>
 
         <div class="hero-interests">
-          <span class="label">Centres d'intérêt :</span>
-          <span class="chip">Intelligence Artificielle</span>
-          <span class="chip">Électronique & Robotique</span>
-          <span class="chip">Appareils de santé connectés</span>
+          <span class="label" data-i18n="hero.interestsLabel">Centres d'intérêt :</span>
+          <span class="chip" data-i18n="hero.chip1">Intelligence Artificielle</span>
+          <span class="chip" data-i18n="hero.chip2">Électronique & Robotique</span>
+          <span class="chip" data-i18n="hero.chip3">Appareils de santé connectés</span>
         </div>
       </div>
 
@@ -743,9 +767,9 @@
       <aside class="profile-card">
         <img class="avatar" src="photo_de_profil.jpeg" alt="Photo de Maxence Olivier">
         <h2>Maxence Olivier</h2>
-        <div class="role">Élève Ingénieur – Spécialité IA</div>
+        <div class="role" data-i18n="profile.role">Élève Ingénieur – Spécialité IA</div>
         <div class="org">EPISEN – UPEC</div>
-        <div class="location"><i class="fas fa-map-marker-alt"></i>Île-de-France</div>
+        <div class="location"><i class="fas fa-map-marker-alt"></i><span data-i18n="profile.location">Île-de-France</span></div>
 
         <div class="socials">
           <a href="mailto:maxenceolivier2@gmail.com" aria-label="Email"><i class="fas fa-at"></i></a>
@@ -761,7 +785,7 @@
 
     <!-- FORMATIONS -->
     <section id="formations">
-      <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Formations & Diplômes</h2>
+      <h2 class="section-title"><i class="fas fa-graduation-cap"></i> <span data-i18n="edu.title">Formations & Diplômes</span></h2>
       <div class="stack-list">
 
         <div class="card-item">
@@ -769,16 +793,16 @@
             <img src="EPISEN_logo-RVB.jpg" alt="Logo EPISEN" class="card-logo">
             <div class="card-header-body">
               <div class="card-header">
-                <span class="card-title">Formation ITS (Ingénieur en Technologies pour la Santé)</span>
+                <span class="card-title" data-i18n="edu.episenTitle">Formation ITS (Ingénieur en Technologies pour la Santé)</span>
                 <span class="card-date">2025 - 2028</span>
               </div>
               <p class="card-sub">
                 <a href="https://www.linkedin.com/search/results/all/?keywords=EPISEN%20-%20ITS&origin=ENTITY_SEARCH_HOME_HISTORY&heroEntityKey=urn%3Ali%3Aorganization%3A27210886" target="_blank" rel="noopener noreferrer" class="inline-link">EPISEN</a>
-                • École rattachée à l'<a href="https://www.linkedin.com/groups/156064/" target="_blank" rel="noopener noreferrer" class="inline-link">UPEC</a>
+                • <span data-i18n="edu.episenSchool">École rattachée à l'</span><a href="https://www.linkedin.com/groups/156064/" target="_blank" rel="noopener noreferrer" class="inline-link">UPEC</a>
               </p>
             </div>
           </div>
-          <p style="margin-top: 0.5rem;"><strong>Spécialité :</strong> Intelligence Artificielle</p>
+          <p style="margin-top: 0.5rem;"><strong data-i18n="edu.specialtyLabel">Spécialité :</strong> <span data-i18n="edu.specialtyVal">Intelligence Artificielle</span></p>
         </div>
 
         <div class="card-item">
@@ -786,13 +810,13 @@
             <img src="cropped-Lyce_e-du-Hainaut-OF-20170123.png" alt="Logo Lycée du Hainaut" class="card-logo">
             <div class="card-header-body">
               <div class="card-header">
-                <span class="card-title">CPGE TSI (Classe Préparatoire aux Grandes Écoles)</span>
+                <span class="card-title" data-i18n="edu.cpgeTitle">CPGE TSI (Classe Préparatoire aux Grandes Écoles)</span>
                 <span class="card-date">2023 - 2025</span>
               </div>
               <p class="card-sub">Lycée du Hainaut, Valenciennes</p>
             </div>
           </div>
-          <p style="margin-top: 0.5rem;">Technologie et Sciences Industrielles</p>
+          <p style="margin-top: 0.5rem;" data-i18n="edu.cpgeSub">Technologie et Sciences Industrielles</p>
         </div>
 
         <div class="card-item">
@@ -800,13 +824,13 @@
             <img src="logo-Paul-Duez-Cambrai.jpeg" alt="Logo Lycée Paul Duez" class="card-logo">
             <div class="card-header-body">
               <div class="card-header">
-                <span class="card-title">BAC STI2D</span>
+                <span class="card-title" data-i18n="edu.bacTitle">BAC STI2D</span>
                 <span class="card-date">2023</span>
               </div>
               <p class="card-sub">Lycée Paul Duez, Cambrai</p>
             </div>
           </div>
-          <p style="margin-top: 0.5rem;">Spécialité Architecture et Construction</p>
+          <p style="margin-top: 0.5rem;" data-i18n="edu.bacSub">Spécialité Architecture et Construction</p>
         </div>
 
       </div>
@@ -814,32 +838,33 @@
 
     <!-- PROJETS -->
     <section id="projets">
-      <h2 class="section-title"><i class="fas fa-folder-open"></i> Mes Projets</h2>
+      <h2 class="section-title"><i class="fas fa-folder-open"></i> <span data-i18n="projects.title">Mes Projets</span></h2>
       <div class="stack-list">
 
+        <!-- PROJET MESPI -->
         <div class="card-item">
           <div class="card-header">
-            <span class="card-title">Projet MESPI - Brassard Électronique Connecté</span>
-            <span class="card-date">2026 - 2027 (1 an)</span>
+            <span class="card-title" data-i18n="projects.p1Title">Projet MESPI - Brassard Électronique Connecté</span>
+            <span class="card-date" data-i18n="projects.p1Date">2026 - 2027 (1 an)</span>
           </div>
-          <p class="card-sub">Projet de groupe en école d'ingénieurs</p>
-          <p style="margin-top: 0.5rem;">Conception et réalisation d'un prototype de brassard électronique connecté pour mesurer l'activité musculaire et estimer la fatigue des sportifs.</p>
+          <p class="card-sub" data-i18n="projects.p1Sub">Projet de groupe en école d'ingénieurs</p>
+          <p style="margin-top: 0.5rem;" data-i18n="projects.p1Desc">Conception et réalisation d'un prototype de brassard électronique connecté pour mesurer l'activité musculaire et estimer la fatigue des sportifs.</p>
           <div class="tags" style="margin-top: 1rem;">
             <span class="tag">MATLAB/Simulink</span>
             <span class="tag">Flutter</span>
             <span class="tag">Bluetooth</span>
-            <span class="tag">Impression 3D</span>
-            <span class="tag">Électronique</span>
+            <span class="tag" data-i18n="tags.print3d">Impression 3D</span>
+            <span class="tag" data-i18n="tags.electronics">Électronique</span>
           </div>
         </div>
 
         <!-- PROJET ECUE SYSTEMES DE MESURES NOMADES -->
         <div class="card-item">
           <div class="card-header">
-            <span class="card-title">Projet ECUE Systèmes de Mesures Nomades - IHM MATLAB</span>
+            <span class="card-title" data-i18n="projects.p2Title">Projet ECUE Systèmes de Mesures Nomades - IHM MATLAB</span>
             <span class="card-date">2026</span>
           </div>
-          <p class="card-sub">Projet de groupe à l'EPISEN (Groupe Star Wars) • ECUE 325, groupe de 3, encadré par Régis Fournier</p>
+          <p class="card-sub" data-i18n="projects.p2Sub">Projet de groupe à l'EPISEN (Groupe Star Wars) • ECUE 325, groupe de 3, encadré par Régis Fournier</p>
 
           <div class="project-card-content">
             <!-- CARROUSEL AUTOMATIQUE DES 4 CAPTURES DU PROJET APP DESIGNER -->
@@ -879,13 +904,13 @@
 
             <!-- TEXTE À DROITE DE L'IMAGE -->
             <div class="project-text">
-              <p>Chaîne complète de simulation, d'analyse FFT et de correction de signaux déformés, intégrée dans une IHM MATLAB App Designer.</p>
+              <p data-i18n="projects.p2Intro">Chaîne complète de simulation, d'analyse FFT et de correction de signaux déformés, intégrée dans une IHM MATLAB App Designer.</p>
 
               <ul class="project-list">
-                <li><strong>Signal :</strong> 3 harmoniques réglables en temps réel.</li>
-                <li><strong>Erreurs :</strong> gain, offset, exponentielle, logarithme, estimées par FFT puis corrigées.</li>
-                <li><strong>IHM :</strong> 7 pages interactives avec bande-son Star Wars.</li>
-                <li><strong>Bonus :</strong> mode « Dark Debug », export CSV et rapport PDF.</li>
+                <li><strong data-i18n="projects.p2Li1Strong">Signal :</strong> <span data-i18n="projects.p2Li1Text">3 harmoniques réglables en temps réel.</span></li>
+                <li><strong data-i18n="projects.p2Li2Strong">Erreurs :</strong> <span data-i18n="projects.p2Li2Text">gain, offset, exponentielle, logarithme, estimées par FFT puis corrigées.</span></li>
+                <li><strong data-i18n="projects.p2Li3Strong">IHM :</strong> <span data-i18n="projects.p2Li3Text">7 pages interactives avec bande-son Star Wars.</span></li>
+                <li><strong data-i18n="projects.p2Li4Strong">Bonus :</strong> <span data-i18n="projects.p2Li4Text">mode « Dark Debug », export CSV et rapport PDF.</span></li>
               </ul>
             </div>
           </div>
@@ -893,25 +918,25 @@
           <div class="tags" style="margin-top: 1rem;">
             <span class="tag">MATLAB</span>
             <span class="tag">App Designer</span>
-            <span class="tag">Traitement du signal (FFT)</span>
-            <span class="tag">Capteurs & Mesures</span>
+            <span class="tag" data-i18n="tags.signal">Traitement du signal (FFT)</span>
+            <span class="tag" data-i18n="tags.sensors">Capteurs & Mesures</span>
             <span class="tag">IHM</span>
-            <span class="tag">Régression linéaire</span>
-            <span class="tag">Travail de groupe</span>
+            <span class="tag" data-i18n="tags.regression">Régression linéaire</span>
+            <span class="tag" data-i18n="tags.teamwork">Travail de groupe</span>
           </div>
 
           <!-- DÉROULANT POUR ACCÉDER AU RÉSULTAT / CODE / COMPTE RENDU -->
           <details class="project-details">
             <summary>
-              <span><i class="fas fa-paperclip"></i> Consulter le projet (Compte-rendu & Code Source)</span>
+              <span><i class="fas fa-paperclip"></i> <span data-i18n="projects.p2Details">Consulter le projet (Compte-rendu & Code Source)</span></span>
               <i class="fas fa-chevron-down"></i>
             </summary>
             <div class="project-actions">
               <a href="compte_rendu_star_wars.pdf" target="_blank" rel="noopener noreferrer" class="btn-action">
-                <i class="fas fa-file-pdf" style="color: #ef4444;"></i> Compte-rendu (PDF)
+                <i class="fas fa-file-pdf" style="color: #ef4444;"></i> <span data-i18n="projects.p2Pdf">Compte-rendu (PDF)</span>
               </a>
               <a href="Projet_MATLAB_Systemes_Mesures_Nomades.zip" download class="btn-action">
-                <i class="fas fa-file-archive" style="color: #eab308;"></i> Code Source MATLAB (.zip)
+                <i class="fas fa-file-archive" style="color: #eab308;"></i> <span data-i18n="projects.p2Zip">Code Source MATLAB (.zip)</span>
               </a>
             </div>
           </details>
@@ -920,10 +945,10 @@
         <!-- PROJET SCRUM - APPLICATION POSTOP SUIVI -->
         <div class="card-item">
           <div class="card-header">
-            <span class="card-title">Projet Scrum - Application de Suivi Post-Opératoire (PostOp Suivi)</span>
-            <span class="card-date">2026 (6 mois)</span>
+            <span class="card-title" data-i18n="projects.p3Title">Projet Scrum - Application de Suivi Post-Opératoire (PostOp Suivi)</span>
+            <span class="card-date" data-i18n="projects.p3Date">2026 (6 mois)</span>
           </div>
-          <p class="card-sub">Projet de groupe en école d'ingénieurs (EPISEN / UPEC) • Équipe 7</p>
+          <p class="card-sub" data-i18n="projects.p3Sub">Projet de groupe en école d'ingénieurs (EPISEN / UPEC) • Équipe 7</p>
 
           <div class="project-card-content">
             <!-- IMAGE DU PROJET POSTOP SUIVI À GAUCHE (SANS ROIGNAGE) -->
@@ -931,12 +956,12 @@
 
             <!-- TEXTE À DROITE DE L'IMAGE -->
             <div class="project-text">
-              <p>Conception et développement d'une application web de télésuivi médical à domicile permettant de maintenir le lien entre les patients convalescents et leur équipe soignante en mode Agile/Scrum.</p>
+              <p data-i18n="projects.p3Intro">Conception et développement d'une application web de télésuivi médical à domicile permettant de maintenir le lien entre les patients convalescents et leur équipe soignante en mode Agile/Scrum.</p>
 
               <ul class="project-list">
-                <li><strong>Rôle :</strong> Product Owner (Gestion du backlog, User Stories, Sprint Planning, Dailies & Rétrospectives).</li>
-                <li><strong>Fonctionnalités :</strong> Questionnaires quotidiens de symptômes, envoi de photos de plaies pour suivi de cicatrisation et alertes intelligentes en cas de risque.</li>
-                <li><strong>Architecture :</strong> Interface dynamique multi-rôles (Espace Patient & Espace Médecin) sécurisée et conforme aux normes de santé.</li>
+                <li><strong data-i18n="projects.p3Li1Strong">Rôle :</strong> <span data-i18n="projects.p3Li1Text">Product Owner (Gestion du backlog, User Stories, Sprint Planning, Dailies & Rétrospectives).</span></li>
+                <li><strong data-i18n="projects.p3Li2Strong">Fonctionnalités :</strong> <span data-i18n="projects.p3Li2Text">Questionnaires quotidiens de symptômes, envoi de photos de plaies pour suivi de cicatrisation et alertes intelligentes en cas de risque.</span></li>
+                <li><strong data-i18n="projects.p3Li3Strong">Architecture :</strong> <span data-i18n="projects.p3Li3Text">Interface dynamique multi-rôles (Espace Patient & Espace Médecin) sécurisée et conforme aux normes de santé.</span></li>
               </ul>
             </div>
           </div>
@@ -947,21 +972,21 @@
             <span class="tag">HTML / CSS / JS</span>
             <span class="tag">Node.js</span>
             <span class="tag">Supabase</span>
-            <span class="tag">Santé connectée</span>
+            <span class="tag" data-i18n="tags.health">Santé connectée</span>
           </div>
 
           <!-- DÉROULANT POUR ACCÉDER AU CODE ET À LA DÉMO -->
           <details class="project-details">
             <summary>
-              <span><i class="fas fa-paperclip"></i> Consulter le projet (Code Source & Démo)</span>
+              <span><i class="fas fa-paperclip"></i> <span data-i18n="projects.p3Details">Consulter le projet (Code Source & Démo)</span></span>
               <i class="fas fa-chevron-down"></i>
             </summary>
             <div class="project-actions">
               <a href="https://github.com/maxence-olivier/projet-scrum" target="_blank" rel="noopener noreferrer" class="btn-action">
-                <i class="fab fa-github" style="color: var(--text-main);"></i> Dépôt GitHub du Projet
+                <i class="fab fa-github" style="color: var(--text-main);"></i> <span data-i18n="projects.p3Github">Dépôt GitHub du Projet</span>
               </a>
               <a href="https://maxence-olivier.github.io/projet-scrum/" target="_blank" rel="noopener noreferrer" class="btn-action">
-                <i class="fas fa-external-link-alt" style="color: var(--primary);"></i> Tester la démo en ligne
+                <i class="fas fa-external-link-alt" style="color: var(--primary);"></i> <span data-i18n="projects.p3Demo">Tester la démo en ligne</span>
               </a>
             </div>
           </details>
@@ -972,11 +997,11 @@
 
     <!-- COMPÉTENCES -->
     <section id="competences">
-      <h2 class="section-title"><i class="fas fa-code"></i> Compétences & Langues</h2>
+      <h2 class="section-title"><i class="fas fa-code"></i> <span data-i18n="skills.title">Compétences & Langues</span></h2>
       <div class="skills-container">
 
         <div class="skill-category">
-          <h3>Langages Informatiques</h3>
+          <h3 data-i18n="skills.cat1">Langages Informatiques</h3>
           <div class="tags">
             <span class="tag">Python</span>
             <span class="tag">Dart (Flutter)</span>
@@ -986,7 +1011,7 @@
         </div>
 
         <div class="skill-category">
-          <h3>Logiciels & Environnements</h3>
+          <h3 data-i18n="skills.cat2">Logiciels & Environnements</h3>
           <div class="tags">
             <span class="tag">Visual Studio Code</span>
             <span class="tag">Android Studio</span>
@@ -997,10 +1022,10 @@
         </div>
 
         <div class="skill-category">
-          <h3>Langues</h3>
+          <h3 data-i18n="skills.cat3">Langues</h3>
           <div class="tags">
-            <span class="tag">Anglais (Niveau B2)</span>
-            <span class="tag">Allemand (Niveau A2)</span>
+            <span class="tag" data-i18n="skills.english">Anglais (Niveau B2)</span>
+            <span class="tag" data-i18n="skills.german">Allemand (Niveau A2)</span>
           </div>
         </div>
 
@@ -1010,10 +1035,11 @@
   </main>
 
   <footer>
-    <p>&copy; 2026 Maxence Olivier. Tous droits réservés.</p>
+    <p>&copy; 2026 Maxence Olivier. <span data-i18n="footer.rights">Tous droits réservés.</span></p>
   </footer>
 
   <script>
+    /* ===== THÈME SOMBRE / CLAIR ===== */
     const root = document.documentElement;
     const btn = document.getElementById('theme-toggle');
     const icon = btn.querySelector('i');
@@ -1023,9 +1049,9 @@
       icon.className = t === 'dark' ? 'far fa-sun' : 'far fa-moon';
     }
 
-    let saved = null;
-    try { saved = localStorage.getItem('theme'); } catch (e) {}
-    applyTheme(saved || 'dark');
+    let savedTheme = null;
+    try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
+    applyTheme(savedTheme || 'dark');
 
     btn.addEventListener('click', () => {
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -1033,7 +1059,161 @@
       try { localStorage.setItem('theme', next); } catch (e) {}
     });
 
-    // ===== CARROUSEL AUTOMATIQUE DES 4 CAPTURES IHM =====
+    /* ===== TRADUCTION SYSTEM (FR / EN) ===== */
+    const translations = {
+      fr: {
+        nav: { about: "À propos", education: "Formations", projects: "Projets", skills: "Compétences" },
+        hero: {
+          eyebrow: "À propos de moi",
+          tagline: "Intelligence Artificielle<span>·</span>Électronique & Robotique<span>·</span>Santé connectée<span>·</span>Python",
+          text: "Passionné par la convergence entre l'électronique, la robotique et les nouvelles technologies, je suis élève ingénieur à l'EPISEN (UPEC) avec une spécialisation en Intelligence Artificielle. Mon objectif : concevoir des systèmes matériels innovants, intelligents et des appareils de santé connectés pour relever les défis du suivi médical et de l'assistance au quotidien.",
+          btnProjects: "Voir mes projets",
+          btnCv: "Télécharger mon CV",
+          btnContact: "Me contacter",
+          interestsLabel: "Centres d'intérêt :",
+          chip1: "Intelligence Artificielle",
+          chip2: "Électronique & Robotique",
+          chip3: "Appareils de santé connectés"
+        },
+        profile: { role: "Élève Ingénieur – Spécialité IA", location: "Île-de-France" },
+        edu: {
+          title: "Formations & Diplômes",
+          episenTitle: "Formation ITS (Ingénieur en Technologies pour la Santé)",
+          episenSchool: "École rattachée à l'",
+          specialtyLabel: "Spécialité :",
+          specialtyVal: "Intelligence Artificielle",
+          cpgeTitle: "CPGE TSI (Classe Préparatoire aux Grandes Écoles)",
+          cpgeSub: "Technologie et Sciences Industrielles",
+          bacTitle: "BAC STI2D",
+          bacSub: "Spécialité Architecture et Construction"
+        },
+        projects: {
+          title: "Mes Projets",
+          p1Title: "Projet MESPI - Brassard Électronique Connecté",
+          p1Date: "2026 - 2027 (1 an)",
+          p1Sub: "Projet de groupe en école d'ingénieurs",
+          p1Desc: "Conception et réalisation d'un prototype de brassard électronique connecté pour mesurer l'activité musculaire et estimer la fatigue des sportifs.",
+          p2Title: "Projet ECUE Systèmes de Mesures Nomades - IHM MATLAB",
+          p2Sub: "Projet de groupe à l'EPISEN (Groupe Star Wars) • ECUE 325, groupe de 3, encadré par Régis Fournier",
+          p2Intro: "Chaîne complète de simulation, d'analyse FFT et de correction de signaux déformés, intégrée dans une IHM MATLAB App Designer.",
+          p2Li1Strong: "Signal :", p2Li1Text: "3 harmoniques réglables en temps réel.",
+          p2Li2Strong: "Erreurs :", p2Li2Text: "gain, offset, exponentielle, logarithme, estimées par FFT puis corrigées.",
+          p2Li3Strong: "IHM :", p2Li3Text: "7 pages interactives avec bande-son Star Wars.",
+          p2Li4Strong: "Bonus :", p2Li4Text: "mode « Dark Debug », export CSV et rapport PDF.",
+          p2Details: "Consulter le projet (Compte-rendu & Code Source)",
+          p2Pdf: "Compte-rendu (PDF)", p2Zip: "Code Source MATLAB (.zip)",
+          p3Title: "Projet Scrum - Application de Suivi Post-Opératoire (PostOp Suivi)",
+          p3Date: "2026 (6 mois)",
+          p3Sub: "Projet de groupe en école d'ingénieurs (EPISEN / UPEC) • Équipe 7",
+          p3Intro: "Conception et développement d'une application web de télésuivi médical à domicile permettant de maintenir le lien entre les patients convalescents et leur équipe soignante en mode Agile/Scrum.",
+          p3Li1Strong: "Rôle :", p3Li1Text: "Product Owner (Gestion du backlog, User Stories, Sprint Planning, Dailies & Rétrospectives).",
+          p3Li2Strong: "Fonctionnalités :", p3Li2Text: "Questionnaires quotidiens de symptômes, envoi de photos de plaies pour suivi de cicatrisation et alertes intelligentes en cas de risque.",
+          p3Li3Strong: "Architecture :", p3Li3Text: "Interface dynamique multi-rôles (Espace Patient & Espace Médecin) sécurisée et conforme aux normes de santé.",
+          p3Details: "Consulter le projet (Code Source & Démo)",
+          p3Github: "Dépôt GitHub du Projet", p3Demo: "Tester la démo en ligne"
+        },
+        tags: {
+          print3d: "Impression 3D", electronics: "Électronique", signal: "Traitement du signal (FFT)",
+          sensors: "Capteurs & Mesures", regression: "Régression linéaire", teamwork: "Travail de groupe", health: "Santé connectée"
+        },
+        skills: {
+          title: "Compétences & Langues", cat1: "Langages Informatiques", cat2: "Logiciels & Environnements", cat3: "Langues",
+          english: "Anglais (Niveau B2)", german: "Allemand (Niveau A2)"
+        },
+        footer: { rights: "Tous droits réservés." }
+      },
+      en: {
+        nav: { about: "About", education: "Education", projects: "Projects", skills: "Skills" },
+        hero: {
+          eyebrow: "About me",
+          tagline: "Artificial Intelligence<span>·</span>Electronics & Robotics<span>·</span>Connected Health<span>·</span>Python",
+          text: "Passionate about the intersection of electronics, robotics, and new technologies, I am an engineering student at EPISEN (UPEC) specializing in Artificial Intelligence. My goal: design innovative, smart hardware systems and connected health devices to tackle daily medical monitoring and assistance challenges.",
+          btnProjects: "View my projects",
+          btnCv: "Download my CV",
+          btnContact: "Contact me",
+          interestsLabel: "Interests:",
+          chip1: "Artificial Intelligence",
+          chip2: "Electronics & Robotics",
+          chip3: "Connected Health Devices"
+        },
+        profile: { role: "Engineering Student – AI Major", location: "Greater Paris, France" },
+        edu: {
+          title: "Education & Qualifications",
+          episenTitle: "Healthcare Technology Engineering Degree (ITS)",
+          episenSchool: "School affiliated with ",
+          specialtyLabel: "Specialty:",
+          specialtyVal: "Artificial Intelligence",
+          cpgeTitle: "CPGE TSI (Intensive STEM Foundation Degree)",
+          cpgeSub: "Technology & Industrial Sciences",
+          bacTitle: "High School Diploma (STI2D)",
+          bacSub: "Architecture & Construction Specialty"
+        },
+        projects: {
+          title: "My Projects",
+          p1Title: "MESPI Project - Connected Electronic Armband",
+          p1Date: "2026 - 2027 (1 year)",
+          p1Sub: "Engineering school group project",
+          p1Desc: "Design and development of a connected electronic armband prototype to measure muscle activity and estimate athlete fatigue.",
+          p2Title: "Nomadic Measurement Systems Project - MATLAB GUI",
+          p2Sub: "Group project at EPISEN (Star Wars Team) • ECUE 325, team of 3, supervised by Régis Fournier",
+          p2Intro: "Complete simulation, FFT analysis, and signal correction pipeline integrated into a MATLAB App Designer GUI.",
+          p2Li1Strong: "Signal:", p2Li1Text: "3 real-time adjustable harmonics.",
+          p2Li2Strong: "Errors:", p2Li2Text: "gain, offset, exponential, logarithm, estimated via FFT and corrected.",
+          p2Li3Strong: "GUI:", p2Li3Text: "7 interactive pages with Star Wars soundtrack.",
+          p2Li4Strong: "Bonus:", p2Li4Text: "Dark Debug mode, CSV export, and PDF reporting.",
+          p2Details: "View Project (Report & Source Code)",
+          p2Pdf: "Report (PDF)", p2Zip: "MATLAB Source Code (.zip)",
+          p3Title: "Scrum Project - Post-Operative Remote Monitoring App",
+          p3Date: "2026 (6 months)",
+          p3Sub: "Engineering school group project (EPISEN / UPEC) • Team 7",
+          p3Intro: "Design and development of a web app for home post-op remote monitoring to maintain continuous care between convalescent patients and medical teams, built using Agile/Scrum.",
+          p3Li1Strong: "Role:", p3Li1Text: "Product Owner (Backlog management, User Stories, Sprint Planning, Dailies & Retrospectives).",
+          p3Li2Strong: "Features:", p3Li2Text: "Daily symptom questionnaires, wound photo uploads for healing tracking, and smart safety alerts.",
+          p3Li3Strong: "Architecture:", p3Li3Text: "Dynamic multi-role interface (Patient & Doctor Portals), secure and compliant with healthcare standards.",
+          p3Details: "View Project (Source Code & Demo)",
+          p3Github: "Project GitHub Repository", p3Demo: "Try Live Demo"
+        },
+        tags: {
+          print3d: "3D Printing", electronics: "Electronics", signal: "Signal Processing (FFT)",
+          sensors: "Sensors & Measurements", regression: "Linear Regression", teamwork: "Teamwork", health: "Connected Health"
+        },
+        skills: {
+          title: "Skills & Languages", cat1: "Programming Languages", cat2: "Software & Environments", cat3: "Languages",
+          english: "English (B2 Level)", german: "German (A2 Level)"
+        },
+        footer: { rights: "All rights reserved." }
+      }
+    };
+
+    let currentLang = 'fr';
+    const langBtn = document.getElementById('lang-toggle');
+    const langText = document.getElementById('lang-text');
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      langText.textContent = lang === 'fr' ? 'EN' : 'FR';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const keys = key.split('.');
+        let val = translations[lang];
+        keys.forEach(k => { if (val) val = val[k]; });
+        if (val) el.innerHTML = val;
+      });
+
+      try { localStorage.setItem('pref_lang', lang); } catch (e) {}
+    }
+
+    langBtn.addEventListener('click', () => {
+      setLanguage(currentLang === 'fr' ? 'en' : 'fr');
+    });
+
+    let savedLang = null;
+    try { savedLang = localStorage.getItem('pref_lang'); } catch (e) {}
+    if (savedLang) setLanguage(savedLang);
+
+    /* ===== CARROUSEL AUTOMATIQUE DES 4 CAPTURES IHM ===== */
     const ihmCarousel = document.querySelector('.ihm-carousel');
 
     if (ihmCarousel) {
