@@ -369,26 +369,26 @@
     .inline-link { color: var(--primary); text-decoration: none; }
     .inline-link:hover { text-decoration: underline; }
 
-    /* ===== CONTENU CARTE AVEC IMAGE À DROITE DU TEXTE ===== */
+    /* ===== DISPOSITION PROJET : IMAGE À GAUCHE, TEXTE À DROITE ===== */
     .project-card-content {
       display: flex;
-      align-items: flex-start;
-      gap: 1.5rem;
+      align-items: center;
+      gap: 1.8rem;
       margin-top: 0.75rem;
+    }
+
+    .project-img-thumb {
+      width: 380px;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: 0.6rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+      flex-shrink: 0;
     }
 
     .project-text {
       flex: 1;
-    }
-
-    .project-img-thumb {
-      width: 280px;
-      max-height: 220px;
-      object-fit: cover;
-      border-radius: 0.6rem;
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      flex-shrink: 0;
     }
 
     /* ===== ACCORDEON / DETAILS DES PROJETS ===== */
@@ -639,11 +639,13 @@
           <p class="card-sub">Projet de groupe à l'EPISEN (Groupe Star Wars)</p>
 
           <div class="project-card-content">
-            <div class="project-text">
-              <p>Conception et réalisation d'une chaîne complète de simulation, d'analyse fréquentielle (FFT) et de correction de signaux déformés (erreurs linéaires de gain/offset et non linéaires de type exponentiel/logarithmique) intégrée dans une IHM sous MATLAB App Designer, avec options de débogage et d'exportation (CSV/PDF).</p>
-            </div>
-            <!-- IMAGE DU PROJET APP DESIGNER (À DROITE, COMPACTE) -->
+            <!-- IMAGE DU PROJET APP DESIGNER À GAUCHE -->
             <img src="image_projet_IHM_starwar.png" alt="Aperçu de l'IHM MATLAB App Designer du Projet Star Wars" class="project-img-thumb">
+
+            <!-- TEXTE À DROITE DE L'IMAGE -->
+            <div class="project-text">
+              <p>Conception et réalisation d'une chaîne complète de simulation, d'analyse fréquentielle (FFT) et de correction de signaux déformés (erreurs linéaires de gain/offset et non linéaires de type exponentiel/logarithmique) intégrée dans une IHM sous MATLAB App Designer, avec options de débogage et d'exportation (CSV/PDF)[cite: 2, 38].</p>
+            </div>
           </div>
           
           <div class="tags" style="margin-top: 1rem;">
