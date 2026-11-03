@@ -369,6 +369,18 @@
     .inline-link { color: var(--primary); text-decoration: none; }
     .inline-link:hover { text-decoration: underline; }
 
+    /* ===== IMAGE PROJET ===== */
+    .project-img-preview {
+      width: 100%;
+      max-width: 650px;
+      margin: 1rem 0;
+      border-radius: 0.6rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      object-fit: cover;
+      display: block;
+    }
+
     /* ===== ACCORDEON / DETAILS DES PROJETS ===== */
     details.project-details {
       margin-top: 1rem;
@@ -606,7 +618,7 @@
           </div>
         </div>
 
-        <!-- PROJET ECUE SYSTEMES DE MESURES NOMADES (AVEC EXPANSION ET ACCÈS CODE/RAPPORT) -->
+        <!-- PROJET ECUE SYSTEMES DE MESURES NOMADES (AVEC IMAGE, CODE SANS TEXTE CITATION ET ACCÈS FICHIERS) -->
         <div class="card-item">
           <div class="card-header">
             <span class="card-title">Projet ECUE Systèmes de Mesures Nomades - IHM MATLAB</span>
@@ -614,6 +626,9 @@
           </div>
           <p class="card-sub">Projet de groupe à l'EPISEN (Groupe Star Wars)</p>
           <p style="margin-top: 0.5rem;">Conception et réalisation d'une chaîne complète de simulation, d'analyse fréquentielle (FFT) et de correction de signaux déformés (erreurs linéaires de gain/offset et non linéaires de type exponentiel/logarithmique) intégrée dans une IHM sous MATLAB App Designer, avec options de débogage et d'exportation (CSV/PDF)[cite: 2, 38].</p>
+
+          <!-- IMAGE DU PROJET APP DESIGNER -->
+          <img src="image_projet_IHM_starwar.png" alt="Aperçu de l'IHM MATLAB App Designer du Projet Star Wars" class="project-img-preview">
           
           <div class="tags" style="margin-top: 1rem;">
             <span class="tag">MATLAB</span>
