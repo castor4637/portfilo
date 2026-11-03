@@ -532,7 +532,7 @@
         <li><a href="#competences">Compétences</a></li>
       </ul>
       <div class="nav-actions">
-        <button class="icon-btn" id="theme-toggle" aria-label="Changer de thème"><i class="far fa-moon"></i></button>
+        <button class="icon-btn" id="theme-toggle" aria-label="Changer de thème"><i class="far fa-sun"></i></button>
       </div>
     </nav>
   </header>
@@ -790,7 +790,8 @@
 
     let saved = null;
     try { saved = localStorage.getItem('theme'); } catch (e) {}
-    applyTheme(saved || 'light');
+    // Définit le mode sombre 'dark' par défaut
+    applyTheme(saved || 'dark');
 
     btn.addEventListener('click', () => {
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
