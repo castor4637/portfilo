@@ -681,15 +681,13 @@
 
             <!-- TEXTE À DROITE DE L'IMAGE -->
             <div class="project-text">
-              <p>Conception et réalisation d'une chaîne complète de simulation, d'analyse fréquentielle (FFT) et de correction de signaux déformés, intégrée dans une IHM sous MATLAB App Designer.</p>
+              <p>Chaîne complète de simulation, d'analyse FFT et de correction de signaux déformés, intégrée dans une IHM MATLAB App Designer.</p>
 
               <ul class="project-list">
-                <li><strong>Génération du signal :</strong> composante continue + 3 harmoniques sinusoïdales, réglables en temps réel (amplitudes, fréquences, fréquence d'échantillonnage jusqu'à 100 Hz).</li>
-                <li><strong>Déformations :</strong> erreurs linéaires (gain, offset, gain + offset, offset + gain) et non linéaires (exponentielle, logarithme).</li>
-                <li><strong>Analyse spectrale :</strong> FFT avec spectre monolatéral, axe des fréquences en Hz et détection automatique de la fréquence fondamentale.</li>
-                <li><strong>Estimation & correction :</strong> mesure du gain et de l'offset à partir du spectre, puis restauration du signal d'origine par la fonction réciproque. Pour le non linéaire, les paramètres sont estimés par régression linéaire (<code>polyfit</code>).</li>
-                <li><strong>IHM :</strong> 7 pages (Accueil, Signal, Erreur, FFT, Estimation, Correction, Option), curseurs grisés selon le mode choisi et bande-son Star Wars à l'accueil.</li>
-                <li><strong>Bonus :</strong> mode « Dark Debug » (composantes affichées séparément), export des données en CSV et rapport d'analyse en PDF.</li>
+                <li><strong>Signal :</strong> 3 harmoniques réglables en temps réel.</li>
+                <li><strong>Erreurs :</strong> gain, offset, exponentielle, logarithme, estimées par FFT puis corrigées.</li>
+                <li><strong>IHM :</strong> 7 pages interactives avec bande-son Star Wars.</li>
+                <li><strong>Bonus :</strong> mode « Dark Debug », export CSV et rapport PDF.</li>
               </ul>
             </div>
           </div>
