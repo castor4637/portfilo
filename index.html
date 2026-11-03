@@ -369,6 +369,62 @@
     .inline-link { color: var(--primary); text-decoration: none; }
     .inline-link:hover { text-decoration: underline; }
 
+    /* ===== ACCORDEON / DETAILS DES PROJETS ===== */
+    details.project-details {
+      margin-top: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 0.6rem;
+      overflow: hidden;
+      transition: background 0.2s;
+    }
+
+    details.project-details summary {
+      padding: 0.8rem 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-main);
+    }
+
+    details.project-details summary:hover {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--primary);
+    }
+
+    .project-actions {
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.4rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text-main);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
     .skills-container { display: flex; flex-direction: column; gap: 2rem; }
     .skill-category h3 { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 0.85rem; }
     .tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
@@ -550,13 +606,15 @@
           </div>
         </div>
 
+        <!-- PROJET ECUE SYSTEMES DE MESURES NOMADES (AVEC EXPANSION ET ACCÈS CODE/RAPPORT) -->
         <div class="card-item">
           <div class="card-header">
-            <span class="card-title">Projet ECUE Systèmes de Mesures Nomades - Chaîne d'Acquisition & IHM MATLAB</span>
+            <span class="card-title">Projet ECUE Systèmes de Mesures Nomades - IHM MATLAB</span>
             <span class="card-date">2026</span>
           </div>
           <p class="card-sub">Projet de groupe à l'EPISEN (Groupe Star Wars)</p>
-          <p style="margin-top: 0.5rem;">Conception et réalisation d'une chaîne complète de simulation, d'analyse fréquentielle (FFT) et de correction de signaux déformés (erreurs linéaires de gain/offset et non linéaires de type exponentiel/logarithmique) intégrée dans une Interface Homme-Machine sous MATLAB App Designer, avec options de débogage et d'exportation (CSV/PDF)[cite: 2, 38].</p>
+          <p style="margin-top: 0.5rem;">Conception et réalisation d'une chaîne complète de simulation, d'analyse fréquentielle (FFT) et de correction de signaux déformés (erreurs linéaires de gain/offset et non linéaires de type exponentiel/logarithmique) intégrée dans une IHM sous MATLAB App Designer, avec options de débogage et d'exportation (CSV/PDF)[cite: 2, 38].</p>
+          
           <div class="tags" style="margin-top: 1rem;">
             <span class="tag">MATLAB</span>
             <span class="tag">App Designer</span>
@@ -564,6 +622,22 @@
             <span class="tag">Capteurs & Mesures</span>
             <span class="tag">IHM</span>
           </div>
+
+          <!-- DÉROULANT POUR ACCÉDER AU RÉSULTAT / CODE / COMPTE RENDU -->
+          <details class="project-details">
+            <summary>
+              <span><i class="fas fa-paperclip"></i> Consulter le projet (Compte-rendu & Code Source)</span>
+              <i class="fas fa-chevron-down"></i>
+            </summary>
+            <div class="project-actions">
+              <a href="compte_rendu_star_wars.pdf" target="_blank" rel="noopener noreferrer" class="btn-action">
+                <i class="fas fa-file-pdf" style="color: #ef4444;"></i> Compte-rendu (PDF)
+              </a>
+              <a href="Projet_MATLAB_Systemes_Mesures_Nomades.zip" download class="btn-action">
+                <i class="fas fa-file-archive" style="color: #eab308;"></i> Code Source MATLAB (.zip)
+              </a>
+            </div>
+          </details>
         </div>
 
         <div class="card-item">
