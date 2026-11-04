@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TP Îlot Portail – Simulation | Maxence Olivier</title>
+<style>
+  :root{--g1:#022c22;--g2:#10b981;--g3:#059669;--g4:#e2e8f0;--ink:#0f172a;--mut:#475569;--card:#f1f5f9;--bg:#ffffff;--acc:#e07a1f;--bd:rgba(15,23,42,.15);--notebg:#fff6ec}
+  :root[data-theme="dark"]{--g3:#34d399;--g4:#0f172a;--ink:#f8fafc;--mut:#cbd5e1;--card:#1e293b;--bg:#0f172a;--bd:rgba(255,255,255,.15);--notebg:#3b2a14}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  header{background:linear-gradient(180deg,#022c22 0%,#064e3b 55%,#065f46 100%);color:#fff;padding:48px 20px 40px;text-align:center}
+  header h1{margin:0 0 8px;font-size:clamp(1.8rem,4vw,2.6rem)}
+  header p{margin:4px 0;opacity:.9}
+  main{max-width:1000px;margin:0 auto;padding:24px 16px 60px}
+  section{background:var(--card);border-radius:14px;padding:24px;margin:20px 0;border:1px solid var(--bd)}
+  h2{color:var(--g3);margin-top:0;border-left:5px solid var(--g3);padding-left:12px;font-size:1.35rem}
+  h3{color:var(--g3);margin-bottom:6px}
+  .eq{background:var(--g4);border-radius:8px;padding:10px 14px;font-family:ui-monospace,Consolas,monospace;font-size:.92rem;overflow-x:auto;white-space:pre}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  canvas{width:100%;height:auto;background:#fbfffc;border:1px solid var(--bd);border-radius:10px;display:block}
+  .ctrl{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:12px 0}
+  .ctrl label{font-size:.9rem;color:var(--mut)}
+  button{background:var(--g2);color:#fff;border:0;border-radius:8px;padding:8px 16px;font-size:.95rem;cursor:pointer}
+  button:hover{background:var(--g1)}
+  input[type=range]{accent-color:var(--g2);flex:1;min-width:160px}
+  .params{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-top:10px}
+  .params label{display:flex;flex-direction:column;font-size:.82rem;color:var(--mut)}
+  .params input{background:var(--bg);color:var(--ink);padding:6px;border:1px solid var(--bd);border-radius:6px;font-size:.95rem}
+  .out{display:flex;gap:18px;flex-wrap:wrap;font-weight:600}
+  .out span b{color:var(--g2)}
+  table{border-collapse:collapse;width:100%;font-size:.92rem}
+  th,td{border:1px solid var(--bd);padding:6px 10px;text-align:center}
+  th{background:var(--g4)}
+  .note{border-left:4px solid var(--acc);background:var(--notebg);padding:10px 14px;border-radius:6px;font-size:.92rem}
+  footer{text-align:center;color:var(--mut);font-size:.85rem;padding:20px}
+</style>
+</head>
+<body>
+<header>
+  <p><a href="index.html#projets" style="color:#6ee7b7;text-decoration:none;font-weight:600">← Retour au portfolio</a></p>
+  <h1>TP Îlot Portail</h1>
+  <p>Modélisation cinématique et simulation d’un portail motorisé</p>
+  <p>Kalvin Margat · Florian Lheureux · Maxence Olivier · Frédéric Maureau Antchouey</p>
+</header>
+
+<main>
+
+<section>
+  <h2>1. Objectif</h2>
+  <p>Le portail est actionné par un bras moteur (1) relié à une biellette de poussée (2) qui entraîne le vantail (3) en rotation autour du bâti (0). L’objectif du TP est de déterminer la relation entre l’angle du bras moteur <b>θm</b> et l’angle d’ouverture du vantail <b>θv</b>, puis de comparer le modèle théorique aux mesures réelles.</p>
+</section>
+
+<section>
+  <h2>2. Simulation interactive</h2>
+  <p>Fais varier l’angle d’ouverture du vantail et observe la position du bras moteur calculée à partir de la fermeture géométrique. Les paramètres sont modifiables.</p>
+  <div class="grid">
+    <div><canvas id="mech" width="560" height="460"></canvas></div>
+    <div><canvas id="chart" width="560" height="460"></canvas></div>
+  </div>
+  <div class="ctrl">
+    <button id="play">▶ Lancer</button>
+    <label for="tv">Angle vantail θv :</label>
+    <input type="range" id="tv" min="0" max="90" step="0.5" value="0">
+  </div>
+  <div class="out">
+    <span>θv = <b id="o-tv">0</b>°</span>
+    <span>θm = <b id="o-tm">–</b>°</span>
+    <span>Δθm = <b id="o-dm">–</b>°</span>
+    <span>β = <b id="o-be">–</b>°</span>
+  </div>
+  <div class="params">
+    <label>a (mm)<input type="number" id="pa" value="100"></label>
+    <label>b (mm)<input type="number" id="pb" value="150"></label>
+    <label>c (mm)<input type="number" id="pc" value="250"></label>
+    <label>d (mm)<input type="number" id="pd" value="20"></label>
+    <label>l (mm)<input type="number" id="pl" value="280"></label>
+  </div>
+</section>
+
+<section>
+  <h2>3. Graphe de liaisons</h2>
+  <p>Quatre solides : bâti 0, bras moteur 1, biellette 2 et vantail 3. Les quatre liaisons sont des pivots d’axe (<i>z₀</i>) :</p>
+  <table>
+    <tr><th>Liaison</th><th>Type</th><th>Point</th><th>Paramètre</th></tr>
+    <tr><td>0 – 1</td><td>Pivot</td><td>A</td><td>θm</td></tr>
+    <tr><td>1 – 2</td><td>Pivot</td><td>B</td><td>–</td></tr>
+    <tr><td>2 – 3</td><td>Pivot</td><td>C</td><td>–</td></tr>
+    <tr><td>3 – 0</td><td>Pivot</td><td>O</td><td>θv</td></tr>
+  </table>
+  <p>Le mécanisme est une chaîne fermée plane de type quadrilatère articulé (θm = entrée, θv = sortie, β = angle intermédiaire de la biellette).</p>
+</section>
+
+<section>
+  <h2>4. Fermeture géométrique</h2>
+  <div class="eq">OA + AB + BC + CO = 0
+−a·x₀ − b·y₀ + l·x₁ + l·x₂ − c·x₃ + d·y₃ = 0</div>
+  <p>Projection dans la base 0 :</p>
+  <div class="eq">/x₀ :  −a + l·cos(θm) + l·cos(β) − c·cos(θv) − d·sin(θv) = 0
+/y₀ :  −b + l·sin(θm) + l·sin(β) − c·sin(θv) + d·cos(θv) = 0</div>
+</section>
+
+<section>
+  <h2>5. Élimination de β</h2>
+  <p>On isole l·cos(β) et l·sin(β), on élève au carré et on additionne (cos²+sin² = 1) :</p>
+  <div class="eq">l² = (a − l·cos(θm) + c·cos(θv) + d·sin(θv))²
+   + (b − l·sin(θm) + c·sin(θv) − d·cos(θv))²</div>
+  <p>Pour un θv donné, on pose Q = (Qx, Qy) avec Qx = a + c·cos θv + d·sin θv et Qy = b + c·sin θv − d·cos θv. L’équation devient |l·u(θm) − Q| = l, dont la solution est :</p>
+  <div class="eq">θm = atan2(Qy, Qx) + arccos( ‖Q‖ / 2l )</div>
+  <p>Cette forme explicite est celle utilisée par la simulation ci-dessus (branche « bras moteur vers le haut », celle du portail réel).</p>
+  <p>Valeurs : a = 100 mm, b = 150 mm, c = 250 mm, d = 20 mm, l = 280 mm.</p>
+  <div class="note">Sur la diapositive, c est indiqué à 150 mm, mais le tableur de la « courbe attendue » utilise c = 0,25 m. Avec c = 150 mm, le modèle donne θm ≈ 123° à θv = 90° ; avec c = 250 mm, θm ≈ 115°, ce qui est cohérent avec les 117° mesurés. À vérifier sur le portail réel.</div>
+</section>
+
+<section>
+  <h2>6. Résultats et comparaison</h2>
+  <h3>Courbe attendue (théorique)</h3>
+  <p>Calculée dans le tableur à partir de l’équation de l² ; la courbe est croissante et quasi linéaire jusqu’à environ 96 en fin de course.</p>
+  <h3>Courbe réelle (mesure)</h3>
+  <p>Le relevé des angles montre une évolution quasi linéaire jusqu’à une position finale d’environ <b>117°</b> pour le moteur et <b>90°</b> pour le vantail.</p>
+  <h3>Courbe simulée</h3>
+  <p>La première simulation (tableur) affichait des valeurs aberrantes de l’ordre de 10³², signe d’un problème de formule ou d’unités (mm mélangés à des m). La simulation de cette page résout l’équation de fermeture directement, ce qui évite ce problème.</p>
+  <table>
+    <tr><th>θv (°)</th><th>0</th><th>15</th><th>30</th><th>45</th><th>60</th><th>75</th><th>90</th></tr>
+    <tr id="tbl"><td>θm simulé (°)</td></tr>
+  </table>
+  <h3>Comparaison</h3>
+  <p>Valeur finale simulée : <b id="fin">–</b>° pour θm, contre ≈ 117° mesuré. L’écart restant s’explique probablement par les jeux, les tolérances de montage et la précision du capteur.</p>
+</section>
+
+<section>
+  <h2>7. Conclusion</h2>
+  <p>Le modèle géométrique par fermeture de chaîne reproduit correctement le comportement du portail : la relation entre θm et θv est quasi linéaire sur la plage d’ouverture 0–90°, comme sur les mesures. La principale source d’écart est la valeur des paramètres (en particulier c) et les imperfections réelles du mécanisme. Pour aller plus loin, on pourrait ajuster les paramètres par optimisation sur les mesures et calculer l’effort moteur.</p>
+</section>
+
+</main>
+<footer>TP Îlot Portail – CPGE TSI, Lycée du Hainaut (2024) · Maxence Olivier</footer>
+
+<script>
+try{var th=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",th);}catch(e){document.documentElement.setAttribute("data-theme","dark");}
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var P={a:100,b:150,c:250,d:20,l:280};
+  var D=Math.PI/180;
+  function readP(){P.a=+$('pa').value;P.b=+$('pb').value;P.c=+$('pc').value;P.d=+$('pd').value;P.l=+$('pl').value;}
+  function solve(tvDeg){
+    var tv=tvDeg*D,Qx=P.a+P.c*Math.cos(tv)+P.d*Math.sin(tv),Qy=P.b+P.c*Math.sin(tv)-P.d*Math.cos(tv);
+    var r=Math.hypot(Qx,Qy);
+    if(r>2*P.l||r===0)return null;
+    var tm=Math.atan2(Qy,Qx)+Math.acos(r/(2*P.l));
+    var A={x:-P.a,y:-P.b},B={x:A.x+P.l*Math.cos(tm),y:A.y+P.l*Math.sin(tm)};
+    var C={x:P.c*Math.cos(tv)+P.d*Math.sin(tv),y:P.c*Math.sin(tv)-P.d*Math.cos(tv)};
+    var be=Math.atan2(C.y-B.y,C.x-B.x);
+    return {tm:((tm/D)%360+360)%360,be:be/D,A:A,B:B,C:C,tv:tv};
+  }
+  var mech=$('mech'),mc=mech.getContext('2d'),ch=$('chart'),cc=ch.getContext('2d');
+  var bounds,curve=[],tm0=0;
+  function compute(){
+    readP();curve=[];
+    var minx=1e9,maxx=-1e9,miny=1e9,maxy=-1e9;
+    for(var t=0;t<=90;t+=1){
+      var s=solve(t);if(!s)continue;
+      curve.push({tv:t,tm:s.tm});
+      [s.A,s.B,s.C,{x:0,y:0}].forEach(function(p){minx=Math.min(minx,p.x);maxx=Math.max(maxx,p.x);miny=Math.min(miny,p.y);maxy=Math.max(maxy,p.y);});
+    }
+    bounds={minx:minx-40,maxx:maxx+40,miny:miny-40,maxy:maxy+40};
+    tm0=curve.length?curve[0].tm:0;
+    var cells='<td>θm simulé (°)</td>',row='';
+    [0,15,30,45,60,75,90].forEach(function(t){var s=solve(t);row+='<td>'+(s?s.tm.toFixed(1):'–')+'</td>';});
+    $('tbl').innerHTML=cells+row;
+    var f=solve(90);$('fin').textContent=f?f.tm.toFixed(1):'–';
+  }
+  function tx(p,w,h){
+    var sx=w/(bounds.maxx-bounds.minx),sy=h/(bounds.maxy-bounds.miny),s=Math.min(sx,sy);
+    var ox=(w-(bounds.maxx-bounds.minx)*s)/2,oy=(h-(bounds.maxy-bounds.miny)*s)/2;
+    return {x:ox+(p.x-bounds.minx)*s,y:h-(oy+(p.y-bounds.miny)*s),s:s};
+  }
+  function bar(ctx,p,q,col,wd){ctx.strokeStyle=col;ctx.lineWidth=wd;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}
+  function joint(ctx,p,col){ctx.fillStyle='#fff';ctx.strokeStyle=col;ctx.lineWidth=3;ctx.beginPath();ctx.arc(p.x,p.y,7,0,7);ctx.fill();ctx.stroke();}
+  function label(ctx,t,p,col){ctx.fillStyle=col;ctx.font='bold 15px system-ui';ctx.fillText(t,p.x+10,p.y-10);}
+  function drawMech(tv){
+    var w=mech.width,h=mech.height;mc.clearRect(0,0,w,h);
+    var s=solve(tv);
+    var O=tx({x:0,y:0},w,h);
+    // bâti
+    var A0=tx({x:-P.a,y:-P.b},w,h);
+    bar(mc,O,A0,'#6b4a2f',6);
+    // vantail position finale fantôme
+    var sf=solve(90);if(sf){bar(mc,O,tx(sf.C,w,h),'#cfe6d8',10);}
+    if(!s){mc.fillStyle='#c0392b';mc.font='16px system-ui';mc.fillText('Position inatteignable avec ces paramètres',20,30);return;}
+    var A=tx(s.A,w,h),B=tx(s.B,w,h),C=tx(s.C,w,h);
+    bar(mc,O,C,'#1f7a4f',10);
+    bar(mc,A,B,'#2a6fdb',6);
+    bar(mc,B,C,'#d4531f',5);
+    joint(mc,O,'#222');joint(mc,A,'#2a6fdb');joint(mc,B,'#d4531f');joint(mc,C,'#1f7a4f');
+    label(mc,'O',O,'#222');label(mc,'A',A,'#2a6fdb');label(mc,'B',B,'#d4531f');label(mc,'C',C,'#1f7a4f');
+    mc.font='13px system-ui';
+    mc.fillStyle='#1f7a4f';mc.fillText('Vantail 3',w-110,24);
+    mc.fillStyle='#2a6fdb';mc.fillText('Bras moteur 1',w-110,44);
+    mc.fillStyle='#d4531f';mc.fillText('Biellette 2',w-110,64);
+    mc.fillStyle='#cfe6d8';mc.fillText('Position ouverte (90°)',w-150,84);
+  }
+  function drawChart(tv){
+    var w=ch.width,h=ch.height,L=60,R=20,T=30,B=50;
+    cc.clearRect(0,0,w,h);
+    var ys=curve.map(function(c){return c.tm});
+    var ymin=Math.floor(Math.min.apply(null,ys.concat([0]))/10)*10,ymax=Math.ceil(Math.max.apply(null,ys.concat([117]))/10)*10+10;
+    function X(v){return L+(w-L-R)*v/90}
+    function Y(v){return h-B-(h-T-B)*(v-ymin)/(ymax-ymin)}
+    cc.strokeStyle='#dcebe2';cc.fillStyle='#4d6b5c';cc.font='12px system-ui';cc.lineWidth=1;
+    for(var v=ymin;v<=ymax;v+=20){cc.beginPath();cc.moveTo(L,Y(v));cc.lineTo(w-R,Y(v));cc.stroke();cc.fillText(v,L-30,Y(v)+4);}
+    for(var t=0;t<=90;t+=15){cc.fillText(t,X(t)-6,h-B+18);}
+    cc.fillText('θv (°) – angle du vantail',w/2-70,h-12);
+    cc.save();cc.translate(14,h/2+60);cc.rotate(-Math.PI/2);cc.fillText('θm (°) – angle du bras moteur',0,0);cc.restore();
+    cc.fillStyle='#1f7a4f';cc.font='bold 14px system-ui';cc.fillText('Courbe simulée θm = f(θv)',L+10,T-8);
+    cc.strokeStyle='#1f7a4f';cc.lineWidth=3;cc.beginPath();
+    curve.forEach(function(c,i){var x=X(c.tv),y=Y(c.tm);i?cc.lineTo(x,y):cc.moveTo(x,y);});cc.stroke();
+    // point mesuré
+    cc.fillStyle='#e07a1f';cc.beginPath();cc.arc(X(90),Y(117),6,0,7);cc.fill();
+    cc.font='12px system-ui';cc.fillText('mesure TP ≈ 117°',X(90)-105,Y(117)-10);
+    var s=solve(tv);
+    if(s){cc.fillStyle='#d4531f';cc.beginPath();cc.arc(X(tv),Y(s.tm),7,0,7);cc.fill();}
+  }
+  function update(){
+    var tv=+$('tv').value;
+    var s=solve(tv);
+    $('o-tv').textContent=tv.toFixed(1);
+    $('o-tm').textContent=s?s.tm.toFixed(1):'–';
+    $('o-dm').textContent=s?(s.tm-tm0).toFixed(1):'–';
+    $('o-be').textContent=s?s.be.toFixed(1):'–';
+    drawMech(tv);drawChart(tv);
+  }
+  var timer=null;
+  $('play').onclick=function(){
+    if(timer){clearInterval(timer);timer=null;this.textContent='▶ Lancer';return;}
+    var btn=this;btn.textContent='⏸ Pause';
+    if(+$('tv').value>=90)$('tv').value=0;
+    timer=setInterval(function(){
+      var v=+$('tv').value+0.5;
+      if(v>90){clearInterval(timer);timer=null;btn.textContent='▶ Lancer';return;}
+      $('tv').value=v;update();
+    },30);
+  };
+  $('tv').oninput=update;
+  ['pa','pb','pc','pd','pl'].forEach(function(id){$(id).oninput=function(){compute();update();};});
+  compute();update();
+})();
+</script>
+</body>
+</html>
