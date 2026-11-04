@@ -7,42 +7,77 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <style>
 :root{
   --bg:#0A1322;--bg-elev:#0F1B30;--surface:#142342;--surface-2:#1A2B4F;
   --border:rgba(255,255,255,0.07);--border-strong:rgba(255,255,255,0.14);
   --text:#F1F5FB;--text-mid:#B5C2D8;--text-muted:#7A8AA8;
-  --accent:oklch(0.72 0.13 200);--accent-soft:oklch(0.72 0.13 200/0.14);--accent-strong:oklch(0.78 0.14 200);
-  --primary:oklch(0.55 0.18 258);
-  --danger:oklch(0.7 0.18 25);--success:oklch(0.74 0.14 155);
+  --accent:#3FC1D9;--accent-soft:rgba(63,193,217,.14);--accent-strong:#6FD6EA;
+  --orange:#FF6B2C;--danger:#ff4757;--success:#2ed573;
   --serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',system-ui,-apple-system,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);padding:24px;-webkit-font-smoothing:antialiased;}
-header{max-width:1200px;margin:0 auto 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+header{max-width:1200px;margin:0 auto 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
 .h1{font-family:var(--serif);font-size:clamp(24px,3.5vw,32px);}
 .sub{font-size:14px;color:var(--text-mid);margin-top:4px;}
 .btn-back{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;border:1px solid var(--border-strong);color:var(--text);font-size:13.5px;font-weight:600;text-decoration:none;transition:background .2s;}
 .btn-back:hover{background:var(--surface);}
 
-.grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:320px 1fr;gap:20px;}
-@media(max-width:900px){.grid{grid-template-columns:1fr;}}
+nav{max-width:1200px;margin:0 auto 18px;display:flex;gap:6px;flex-wrap:wrap;}
+nav button{padding:9px 18px;border-radius:10px;border:1px solid var(--border-strong);background:transparent;color:var(--text-mid);font:600 13.5px var(--sans);cursor:pointer;transition:.2s;}
+nav button:hover{background:var(--surface);color:var(--text);}
+nav button.on{background:var(--accent-soft);color:var(--accent-strong);border-color:var(--accent);}
 
-.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:16px;}
-.card-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);display:flex;align-items:center;justify-content:space-between;}
+main{max-width:1200px;margin:0 auto;}
+.tab{display:none;}.tab.on{display:block;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;}
+.card-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.page-title{font-family:var(--serif);font-size:28px;text-align:center;margin-bottom:16px;}
+.page-title span{color:var(--orange);}
 
-.control-group{display:flex;flex-direction:column;gap:6px;}
+.layout{display:grid;grid-template-columns:320px 1fr;gap:20px;}
+@media(max-width:900px){.layout{grid-template-columns:1fr;}}
+.stack{display:flex;flex-direction:column;gap:16px;}
+.control-group{display:flex;flex-direction:column;gap:5px;transition:opacity .2s;}
+.control-group.off{opacity:.35;pointer-events:none;}
 .control-label{font-size:12.5px;color:var(--text-mid);display:flex;justify-content:space-between;}
 .control-val{font-weight:700;color:var(--accent-strong);}
 input[type="range"]{width:100%;accent-color:var(--accent);cursor:pointer;}
 select{width:100%;padding:10px;background:var(--bg-elev);border:1px solid var(--border-strong);border-radius:8px;color:var(--text);font-family:inherit;font-size:13.5px;outline:none;}
-
-.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-@media(max-width:700px){.charts-grid{grid-template-columns:1fr;}}
-.chart-container{background:var(--bg-elev);border:1px solid var(--border);border-radius:12px;padding:14px;position:relative;height:260px;}
-
+.seg{display:flex;gap:6px;}
+.seg button,.btn{flex:1;padding:9px 12px;border-radius:9px;border:1px solid var(--border-strong);background:var(--bg-elev);color:var(--text-mid);font:600 13px var(--sans);cursor:pointer;transition:.2s;}
+.seg button.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-strong);}
+.btn:hover{background:var(--surface-2);color:var(--text);}
+.radios{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.radios label{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text-mid);padding:8px 10px;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:var(--bg-elev);}
+.radios label:has(input:checked){border-color:var(--accent);color:var(--text);background:var(--accent-soft);}
+.radios input{accent-color:var(--accent);}
+.chart-container{background:var(--bg-elev);border:1px solid var(--border);border-radius:12px;padding:14px;position:relative;height:340px;}
+.chart-container.sm{height:230px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:800px){.row2{grid-template-columns:1fr;}}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;}
+.kpi{flex:1;min-width:140px;background:var(--bg-elev);border:1px solid var(--border);border-radius:12px;padding:12px 14px;}
+.kpi small{display:block;font-size:11.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+.kpi b{font-size:22px;color:var(--accent-strong);font-variant-numeric:tabular-nums;}
+.note{font-size:12.5px;color:var(--text-muted);line-height:1.5;}
+.warn{color:#ffb347;}
+.home{text-align:center;padding:40px 20px;}
+.home h2{font-family:var(--serif);font-size:38px;margin-bottom:6px;}
+.home .big{font-size:24px;color:var(--orange);font-weight:700;margin:14px 0;}
+.home ul{list-style:none;margin:14px 0;font-size:18px;line-height:1.9;}
+.home .enc{color:var(--text-mid);margin-top:10px;}
 .badge-info{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;background:var(--accent-soft);color:var(--accent-strong);font-size:12px;font-weight:600;}
+#report{display:none;}
+@media print{
+  body>*:not(#report){display:none!important;}
+  #report{display:block;background:#fff;color:#000;padding:0;}
+  #report h2{font-size:16px;text-align:center;margin-bottom:2px;}
+  #report p{font-size:12px;text-align:center;margin-bottom:8px;}
+  #report img{width:100%;margin-bottom:6px;}
+}
 </style>
 </head>
 <body>
@@ -50,7 +85,7 @@ select{width:100%;padding:10px;background:var(--bg-elev);border:1px solid var(--
 <header>
   <div>
     <h1 class="h1">Simulateur IHM MATLAB — ECUE 325</h1>
-    <p class="sub">Génération de signal, déformations (linéaires & non linéaires) et analyse FFT</p>
+    <p class="sub">Reproduction fidèle de l'IHM App Designer : signal, déformations, FFT, estimation et correction</p>
   </div>
   <a href="index.html" class="btn-back">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
@@ -58,209 +93,433 @@ select{width:100%;padding:10px;background:var(--bg-elev);border:1px solid var(--
   </a>
 </header>
 
-<div class="grid">
-  <!-- PANNEAU DE CONTRÔLE -->
-  <div class="card">
-    <div class="card-title">1. Signal d'origine <span>[s(t)]</span></div>
-    
-    <div class="control-group">
-      <div class="control-label">Composante continue (M) <span class="control-val" id="v-M">0</span></div>
-      <input type="range" id="s-M" min="-5" max="5" value="0" step="0.5" oninput="update()">
-    </div>
+<nav id="nav">
+  <button data-tab="accueil" class="on">Accueil</button>
+  <button data-tab="signal">Signal</button>
+  <button data-tab="erreur">Erreur</button>
+  <button data-tab="fft">FFT</button>
+  <button data-tab="estimation">Estimation</button>
+  <button data-tab="correction">Correction</button>
+  <button data-tab="option">Option</button>
+</nav>
 
-    <div class="control-group">
-      <div class="control-label">Amplitude A1 (f1 = 2Hz) <span class="control-val" id="v-A1">5</span></div>
-      <input type="range" id="s-A1" min="0" max="10" value="5" step="0.5" oninput="update()">
-    </div>
+<main>
 
-    <div class="control-group">
-      <div class="control-label">Amplitude A2 (f2 = 5Hz) <span class="control-val" id="v-A2">2</span></div>
-      <input type="range" id="s-A2" min="0" max="10" value="2" step="0.5" oninput="update()">
-    </div>
-
-    <div class="card-title" style="margin-top:10px;">2. Déformation <span>[f(s)]</span></div>
-
-    <div class="control-group">
-      <div class="control-label">Type de Déformation</div>
-      <select id="s-mode" onchange="update()">
-        <option value="none">Aucune (Signal d'origine)</option>
-        <option value="offset">Offset seul (s + P0)</option>
-        <option value="gain">Gain seul (P1 * s)</option>
-        <option value="gain_offset">Gain + Offset (P1 * s + P0)</option>
-        <option value="exp">Non-linéaire : Exponentielle</option>
-        <option value="log">Non-linéaire : Logarithmique</option>
-      </select>
-    </div>
-
-    <div class="control-group">
-      <div class="control-label">Paramètre P0 / Offset <span class="control-val" id="v-P0">3</span></div>
-      <input type="range" id="s-P0" min="-10" max="10" value="3" step="0.5" oninput="update()">
-    </div>
-
-    <div class="control-group">
-      <div class="control-label">Paramètre P1 / Gain (λ) <span class="control-val" id="v-P1">1.8</span></div>
-      <input type="range" id="s-P1" min="0.1" max="5" value="1.8" step="0.1" oninput="update()">
-    </div>
-
-    <div style="margin-top:auto;padding-top:12px;">
-      <div class="badge-info">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-        Reconstruction FFT active
-      </div>
-    </div>
+<!-- ACCUEIL -->
+<section class="tab on" id="tab-accueil">
+  <div class="card home">
+    <h2>Groupe Star Wars</h2>
+    <div class="sub">ITS2 2026-2027</div>
+    <div class="big">ECUE 325 — Systèmes de mesures nomades</div>
+    <b>MEMBRES :</b>
+    <ul>
+      <li>OLIVIER Maxence</li>
+      <li>AUGER Valentin</li>
+      <li>AL BYDEOI Othmen</li>
+    </ul>
+    <div class="enc">Encadrant : FOURNIER Régis</div>
+    <div class="note" style="margin-top:18px">UPEC · EPISEN — « Que la force soit avec toi »</div>
   </div>
+</section>
 
-  <!-- RÉSULTATS GRAPHIQUES -->
-  <div style="display:flex;flex-direction:column;gap:16px;">
-    
-    <div class="charts-grid">
-      <div class="card">
-        <div class="card-title">Signal Temporel <span>Origine vs Déformé</span></div>
-        <div class="chart-container">
-          <canvas id="chartTime"></canvas>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Analyse Spectrale <span>Spectre FFT |S(f)|</span></div>
-        <div class="chart-container">
-          <canvas id="chartFFT"></canvas>
-        </div>
-      </div>
-    </div>
-
+<!-- SIGNAL -->
+<section class="tab" id="tab-signal">
+  <div class="page-title">Menu <span>signal</span></div>
+  <div class="layout">
     <div class="card">
-      <div class="card-title">Restauration & Correction <span>Signal d'origine vs Signal Restauré</span></div>
-      <div class="chart-container" style="height:220px;">
-        <canvas id="chartCorrection"></canvas>
-      </div>
+      <div class="card-title">Paramètres <span>gene_signal(M, Ai, Fi, fe)</span></div>
+      <div id="ctl-signal" class="stack" style="gap:10px"></div>
     </div>
-
+    <div class="card">
+      <div class="card-title">Courbe du signal <span>s(t) = M + Σ Ai·sin(2π·fi·t)</span></div>
+      <div class="chart-container"><canvas id="cSignal"></canvas></div>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- ERREUR -->
+<section class="tab" id="tab-erreur">
+  <div class="page-title">Menu <span>Erreur</span></div>
+  <div class="layout">
+    <div class="card">
+      <div class="card-title">Choix de la déformation</div>
+      <div class="seg" id="segErr">
+        <button data-k="lin" class="on">linéaire</button>
+        <button data-k="nl">non linéaire</button>
+      </div>
+      <div id="boxLin" class="stack" style="gap:10px">
+        <div class="radios" id="radLin">
+          <label><input type="radio" name="lin" value="gain"> Gain</label>
+          <label><input type="radio" name="lin" value="offset" checked> OFFSET</label>
+          <label><input type="radio" name="lin" value="gain_offset"> Gain + OFFSET</label>
+          <label><input type="radio" name="lin" value="offset_gain"> OFFSET + Gain</label>
+        </div>
+      </div>
+      <div id="boxNL" class="stack" style="gap:10px;display:none">
+        <div class="radios" id="radNL">
+          <label><input type="radio" name="nl" value="exp" checked> exponentielle</label>
+          <label><input type="radio" name="nl" value="log"> logarithmique</label>
+        </div>
+      </div>
+      <div id="ctl-err" class="stack" style="gap:10px"></div>
+      <div class="note" id="formule"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Erreur <span>Original vs Déformé</span></div>
+      <div class="chart-container"><canvas id="cErr"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- FFT -->
+<section class="tab" id="tab-fft">
+  <div class="page-title">Menu <span>FFT</span></div>
+  <div class="card">
+    <div class="kpis"><div class="kpi"><small>Fréquence fondamentale</small><b id="kFond">–</b></div></div>
+    <div class="card-title">Spectre du signal <span>|S(f)| du signal déformé (Menu Erreur)</span></div>
+    <div class="chart-container"><canvas id="cFFT"></canvas></div>
+    <div class="note">Spectre monolatéral : N2 = floor(N/2) points, f = (0:N2-1)·fe/N, non normalisé (abs(fft(s)) comme dans <code>spectre.m</code>). La fondamentale ignore la composante continue (0 Hz).</div>
+  </div>
+</section>
+
+<!-- ESTIMATION -->
+<section class="tab" id="tab-estimation">
+  <div class="page-title">Menu <span>Estimation</span></div>
+  <div class="layout">
+    <div class="card">
+      <div class="control-group">
+        <div class="control-label">Type déformation</div>
+        <select id="estMode">
+          <option value="gain">GAIN</option>
+          <option value="offset">OFFSET</option>
+          <option value="gain_offset">GAIN + OFFSET</option>
+          <option value="offset_gain">OFFSET + GAIN</option>
+          <option value="exp">EXPONENTIELLE</option>
+          <option value="log">LOGARITHMIQUE</option>
+        </select>
+      </div>
+      <div class="kpis" id="kpiEst" style="flex-direction:column"></div>
+      <div class="note">Les paramètres réels (P0, P1, λ, µ) sont ceux réglés dans le Menu Erreur.</div>
+      <div class="note warn" id="warnEst"></div>
+    </div>
+    <div class="card">
+      <div class="card-title" id="estTitle">Spectre</div>
+      <div class="chart-container"><canvas id="cEst"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- CORRECTION -->
+<section class="tab" id="tab-correction">
+  <div class="page-title">Menu <span>Correction</span></div>
+  <div class="card">
+    <div class="card-title" id="corrTitle">Correction</div>
+    <div class="chart-container"><canvas id="cCorr"></canvas></div>
+    <div class="note" id="corrNote"></div>
+  </div>
+</section>
+
+<!-- OPTION -->
+<section class="tab" id="tab-option">
+  <div class="page-title">Menu <span>Option</span></div>
+  <div class="row2">
+    <div class="card">
+      <div class="card-title">Option supra utilisateur</div>
+      <button class="btn" id="btnDebug">Dark Debug</button>
+      <div class="card-title" style="margin-top:8px">Option d'exportation de fichier</div>
+      <button class="btn" id="btnCsv">Exporter un .csv</button>
+      <button class="btn" id="btnPdf">Exporter en PDF</button>
+      <div class="note">CSV : Temps_s, Signal_Deforme. PDF : rapport d'analyse (via la fenêtre d'impression → « Enregistrer au format PDF »).</div>
+    </div>
+    <div class="card" id="debugBox" style="display:none">
+      <div class="card-title">Dark Debug <span>composantes f1, f2, f3</span></div>
+      <div class="chart-container sm"><canvas id="cD1"></canvas></div>
+      <div class="chart-container sm"><canvas id="cD2"></canvas></div>
+      <div class="chart-container sm"><canvas id="cD3"></canvas></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="report"></div>
 
 <script>
-// --- CONFIGURATION CHART.JS SOMBRE ---
-Chart.defaults.color = '#7A8AA8';
-Chart.defaults.font.family = "'DM Sans', sans-serif";
-Chart.defaults.scale.grid.color = 'rgba(255,255,255,0.05)';
+/* ============================================================
+   ÉTAT (valeurs par défaut = captures du rapport)
+   ============================================================ */
+const $ = id => document.getElementById(id);
+const st = {
+  M:0, A:[5,6,2.5], F:[6.61,3.81,6.08], fe:100,
+  cat:'lin', lin:'offset', nl:'exp',
+  P0:10, P1:2.62, lam:0.3, mu:3,
+  est:'gain'
+};
+const PI2 = 2*Math.PI;
 
-// Instanciation des graphiques
-const ctxTime = document.getElementById('chartTime').getContext('2d');
-const ctxFFT = document.getElementById('chartFFT').getContext('2d');
-const ctxCorr = document.getElementById('chartCorrection').getContext('2d');
-
-const chartTime = new Chart(ctxTime, {
-  type: 'line',
-  data: { labels: [], datasets: [
-    { label: 'Original', data: [], borderColor: '#78889F', borderDash: [4,4], borderWidth: 1.5, pointRadius: 0 },
-    { label: 'Déformé', data: [], borderColor: '#oklch(0.7 0.18 25)', color: '#ff5555', borderColor: '#ff4757', borderWidth: 2, pointRadius: 0 }
-  ]},
-  options: { responsive: true, maintainAspectRatio: false, animation: false }
-});
-
-const chartFFT = new Chart(ctxFFT, {
-  type: 'bar',
-  data: { labels: [], datasets: [
-    { label: '|S(f)| Déformé', data: [], backgroundColor: 'rgba(114, 212, 255, 0.6)', borderRadius: 4 }
-  ]},
-  options: { responsive: true, maintainAspectRatio: false, animation: false }
-});
-
-const chartCorr = new Chart(ctxCorr, {
-  type: 'line',
-  data: { labels: [], datasets: [
-    { label: 'Signal Original', data: [], borderColor: '#78889F', borderWidth: 1.5, pointRadius: 0 },
-    { label: 'Signal Corrigé (Restauré)', data: [], borderColor: '#2ed573', borderWidth: 2, pointRadius: 0 }
-  ]},
-  options: { responsive: true, maintainAspectRatio: false, animation: false }
-});
-
-// --- ALGORITHME MATHÉMATIQUE (SIMULATION MATLAB) ---
-function calculate() {
-  const M = parseFloat(document.getElementById('s-M').value);
-  const A1 = parseFloat(document.getElementById('s-A1').value);
-  const A2 = parseFloat(document.getElementById('s-A2').value);
-  const mode = document.getElementById('s-mode').value;
-  const P0 = parseFloat(document.getElementById('s-P0').value);
-  const P1 = parseFloat(document.getElementById('s-P1').value);
-
-  // Mise à jour de l'affichage des valeurs
-  document.getElementById('v-M').textContent = M;
-  document.getElementById('v-A1').textContent = A1;
-  document.getElementById('v-A2').textContent = A2;
-  document.getElementById('v-P0').textContent = P0;
-  document.getElementById('v-P1').textContent = P1;
-
-  const fe = 100; // Fréquence d'échantillonnage 100Hz
-  const N = 100;  // 1 seconde d'acquisition
-  const timeLabels = [];
-  const sOrig = [];
-  const sDeform = [];
-  const sCorr = [];
-
-  // 1. Génération du signal d'origine et déformation
-  for (let i = 0; i < N; i++) {
-    let t = i / fe;
-    timeLabels.push(t.toFixed(2));
-    
-    // s(t) = M + A1*sin(2*pi*2*t) + A2*sin(2*pi*5*t)
-    let s = M + A1 * Math.sin(2 * Math.PI * 2 * t) + A2 * Math.sin(2 * Math.PI * 5 * t);
-    sOrig.push(s);
-
-    let sd = s;
-    if (mode === 'offset') sd = s + P0;
-    else if (mode === 'gain') sd = s * P1;
-    else if (mode === 'gain_offset') sd = (s * P1) + P0;
-    else if (mode === 'exp') sd = Math.exp(s * 0.2) + P0;
-    else if (mode === 'log') sd = Math.log(Math.abs(s) + 1) * P1 + P0;
-
-    sDeform.push(sd);
-
-    // Correction (Réciproque pour démo)
-    let sc = sd;
-    if (mode === 'offset') sc = sd - P0;
-    else if (mode === 'gain') sc = sd / P1;
-    else if (mode === 'gain_offset') sc = (sd - P0) / P1;
-    else if (mode === 'exp') sc = Math.log(Math.max(0.001, sd - P0)) / 0.2;
-    else if (mode === 'log') sc = (Math.exp((sd - P0) / P1) - 1) * Math.sign(s);
-    
-    sCorr.push(sc);
+/* ============================================================
+   ALGORITHMES (portage des scripts MATLAB)
+   ============================================================ */
+// gene_signal : T = 1, t = 0:1/fe:T-1/fe, s = M + sum(Ai.*sin(2*pi*Fi*t))
+function geneSignal(M,A,F,fe){
+  const N = Math.max(2,Math.round(fe)), t=[], s=[];
+  for(let i=0;i<N;i++){
+    const ti=i/fe; t.push(ti);
+    let v=M; for(let k=0;k<3;k++) v+=A[k]*Math.sin(PI2*F[k]*ti);
+    s.push(v);
   }
+  return {t,s};
+}
+const mean = a => a.reduce((x,y)=>x+y,0)/a.length;
 
-  // 2. Calcul du spectre FFT simplifié (Fréquence 0 à 15 Hz)
-  const fftLabels = [];
-  const fftData = [];
-  for (let f = 0; f <= 15; f++) {
-    fftLabels.push(f + ' Hz');
-    let real = 0, imag = 0;
-    for (let n = 0; n < N; n++) {
-      let angle = (2 * Math.PI * f * n) / N;
-      real += sDeform[n] * Math.cos(angle);
-      imag -= sDeform[n] * Math.sin(angle);
-    }
-    let amp = Math.sqrt(real * real + imag * imag) / (f === 0 ? N : N / 2);
-    fftData.push(amp.toFixed(2));
+// deform_signal (6 cas). Exp/Log : paramètres λ (lam) et µ (mu) comme dans l'IHM
+function deform(s,mode,P0,P1,lam,mu){
+  switch(mode){
+    case 'offset':      return s.map(v=>v+P0);
+    case 'gain':        return s.map(v=>P1*v);
+    case 'gain_offset': return s.map(v=>P1*v+P0);
+    case 'offset_gain': return s.map(v=>P1*(v+P0));
+    case 'exp':         return s.map(v=>Math.exp(lam*v)+mu);
+    case 'log':         return s.map(v=>lam*Math.log(Math.abs(v)+1)+mu);
+    default:            return s.slice();
   }
-
-  // 3. Mise à jour des Graphiques
-  chartTime.data.labels = timeLabels;
-  chartTime.data.datasets[0].data = sOrig;
-  chartTime.data.datasets[1].data = sDeform;
-  chartTime.update();
-
-  chartFFT.data.labels = fftLabels;
-  chartFFT.data.datasets[0].data = fftData;
-  chartFFT.update();
-
-  chartCorr.data.labels = timeLabels;
-  chartCorr.data.datasets[0].data = sOrig;
-  chartCorr.data.datasets[1].data = sCorr;
-  chartCorr.update();
 }
 
-function update() { calculate(); }
-calculate();
+// abs(fft(s)) (non normalisé) — DFT directe, N ≤ 100
+function absFFT(s){
+  const N=s.length, out=new Array(N);
+  for(let k=0;k<N;k++){
+    let re=0,im=0;
+    for(let n=0;n<N;n++){const a=PI2*k*n/N; re+=s[n]*Math.cos(a); im-=s[n]*Math.sin(a);}
+    out[k]=Math.hypot(re,im);
+  }
+  return out;
+}
+
+// spectre.m : moitié du spectre + fréquence fondamentale (on saute 0 Hz)
+function spectre(s,fe){
+  const N=s.length, N2=Math.floor(N/2), S=absFFT(s).slice(0,N2);
+  const f=[...Array(N2).keys()].map(k=>k*fe/N);
+  let fond=0;
+  if(N2>1){let b=1;for(let k=2;k<N2;k++) if(S[k]>S[b]) b=k; fond=f[b];}
+  return {f,S,fond};
+}
+
+// régression linéaire y = p1*x + p0 (polyfit degré 1)
+function polyfit1(x,y){
+  const n=x.length,mx=mean(x),my=mean(y);
+  let sxy=0,sxx=0; for(let i=0;i<n;i++){sxy+=(x[i]-mx)*(y[i]-my);sxx+=(x[i]-mx)**2;}
+  const p1=sxx?sxy/sxx:0; return [p1,my-p1*mx];
+}
+
+// correcteXXX : base, déformation, estimation, correction
+function pipeline(mode,fe){
+  const {s:s0} = geneSignal(st.M,st.A,st.F,fe);
+  const c = s0.map(v=>v-mean(s0));
+  const gainFam = ['gain','gain_offset','offset_gain'].includes(mode);
+  const sb = gainFam ? c.map(v=>v+1) : c;              // centrage (+1 pour la famille gain)
+  const sd = deform(sb,mode,st.P0,st.P1,st.lam,st.mu);
+  const N=sb.length, N2=Math.floor(N/2);
+  const Sd=absFFT(sd).map(v=>v/N), Sb=absFFT(sb).map(v=>v/N);
+  let P0m=null,P1m=null,lamm=null,mum=null,sc;
+
+  const peak=()=>{let b=1;for(let k=2;k<N2;k++) if(Sb[k]>Sb[b]) b=k; return b;};
+
+  if(mode==='offset'){
+    P0m=Sd[0]; sc=sd.map(v=>v-P0m);
+  }else if(mode==='gain'){
+    P1m=Sd[0]/Sb[0]; sc=sd.map(v=>v/P1m);
+  }else if(mode==='gain_offset'){
+    const k=peak(); P1m=Sd[k]/Sb[k]; P0m=Sd[0]-1*P1m;
+    sc=sd.map(v=>(v-P0m)/P1m);
+  }else if(mode==='offset_gain'){
+    const k=peak(); P1m=Sd[k]/Sb[k]; P0m=Sd[0]/P1m-1;
+    sc=sd.map(v=>v/P1m-P0m);
+  }else if(mode==='exp'){
+    mum=Math.min(...sd)-Math.exp(st.lam*Math.min(...sb));
+    const y=sd.map(v=>Math.log(Math.max(1e-9,v-mum)));
+    lamm=polyfit1(sb,y)[0];
+    sc=sd.map(v=>Math.log(Math.max(1e-9,v-mum))/lamm);
+  }else if(mode==='log'){
+    mum=Math.min(...sd);
+    // linéarisation : ln(|s|+1) = (sd-µ)/λ  → pente = 1/λ
+    const x=sd.map(v=>v-mum), y=sb.map(v=>Math.log(Math.abs(v)+1));
+    const p=polyfit1(x,y)[0]; lamm=p?1/p:0;
+    sc=sb.map((v,i)=>Math.sign(v)*(Math.exp((sd[i]-mum)/lamm)-1));
+  }
+  const f=[...Array(N2).keys()].map(k=>k*fe/N);
+  return {sb,sd,sc,Sd,Sb,N,N2,f,P0m,P1m,lamm,mum,t:[...Array(N).keys()].map(i=>i/fe)};
+}
+
+/* ============================================================
+   GRAPHIQUES
+   ============================================================ */
+Chart.defaults.color='#7A8AA8';
+Chart.defaults.font.family="'DM Sans', sans-serif";
+Chart.defaults.scale.grid.color='rgba(255,255,255,0.06)';
+
+const stemPlugin={
+  id:'stem',
+  afterDatasetsDraw(chart){
+    const {ctx,scales:{y}}=chart, y0=y.getPixelForValue(0);
+    chart.data.datasets.forEach((ds,i)=>{
+      if(!ds.stem||chart.getDatasetMeta(i).hidden) return;
+      ctx.save(); ctx.strokeStyle=ds.borderColor; ctx.lineWidth=ds.stemWidth||1.5;
+      if(ds.stemDash) ctx.setLineDash(ds.stemDash);
+      chart.getDatasetMeta(i).data.forEach(p=>{ctx.beginPath();ctx.moveTo(p.x,y0);ctx.lineTo(p.x,p.y);ctx.stroke();});
+      ctx.restore();
+    });
+  }
+};
+Chart.register(stemPlugin);
+
+const axes=(xt,yt)=>({x:{type:'linear',title:{display:true,text:xt}},y:{title:{display:true,text:yt}}});
+function mkChart(id,datasets,xt,yt,extra={}){
+  return new Chart($(id),{type:'line',data:{datasets},options:{
+    responsive:true,maintainAspectRatio:false,animation:false,parsing:false,
+    interaction:{mode:'nearest',intersect:false},
+    scales:axes(xt,yt),
+    plugins:{legend:{labels:{color:'#B5C2D8'}},title:{display:false}},...extra}});
+}
+const line=(label,color,dash,w=2)=>({label,data:[],borderColor:color,borderWidth:w,borderDash:dash||[],pointRadius:0,tension:.25});
+const stemDs=(label,color,dash)=>({label,data:[],borderColor:color,backgroundColor:'transparent',showLine:false,pointStyle:'circle',pointRadius:4,pointBorderColor:color,pointBackgroundColor:'transparent',stem:true,stemDash:dash});
+
+const chSignal=mkChart('cSignal',[line('Signal','#5aa9ff')],'Temps (s)','Amplitude');
+chSignal.options.plugins.legend.display=false;
+chSignal.options.scales.x.min=0; chSignal.options.scales.x.max=1;
+const chErr=mkChart('cErr',[line('Original','#78889F',[6,5],1.6),line('Déformé','#ff4757')],'Temps (s)','Amplitude');
+chErr.options.scales.x.min=0; chErr.options.scales.x.max=1;
+const chFFT=mkChart('cFFT',[stemDs('|S(f)|','#5aa9ff')],'Fréquence (Hz)','|S(f)|');
+chFFT.options.plugins.legend.display=false;
+const chEst=mkChart('cEst',[stemDs('Signal Déformé','#ff4757'),stemDs('Signal de base','#5aa9ff',[4,3])],'Fréquence (Hz)','|S(f)|');
+const chCorr=mkChart('cCorr',[line('Signal Origine','#5a6cff',[6,5],1.8),line('Signal Corrigé','#2ed573')],'Temps (s)','Amplitude');
+chCorr.options.scales.x.min=0; chCorr.options.scales.x.max=1;
+const dbgCols=['#5a6cff','#2ed573','#ff59e6'];
+const chD=[1,2,3].map(i=>{const c=mkChart('cD'+i,[line('f'+i,dbgCols[i-1],null,1.6)],'Temps (s)','Amplitude');c.options.plugins.legend.display=false;c.options.plugins.title={display:true,color:'#B5C2D8'};c.options.scales.x.min=0;c.options.scales.x.max=1;return c;});
+
+const pts=(x,y)=>x.map((v,i)=>({x:v,y:y[i]}));
+
+/* ============================================================
+   CONTRÔLES
+   ============================================================ */
+function slider(host,id,label,min,max,step,val,onchg,fmt){
+  const g=document.createElement('div');g.className='control-group';g.id='g-'+id;
+  g.innerHTML=`<div class="control-label">${label}<span class="control-val" id="v-${id}"></span></div><input type="range" id="s-${id}" min="${min}" max="${max}" step="${step}" value="${val}">`;
+  host.appendChild(g);
+  const inp=g.querySelector('input'),out=g.querySelector('.control-val');
+  const show=()=>out.textContent=fmt?fmt(+inp.value):inp.value;
+  inp.addEventListener('input',()=>{show();onchg(+inp.value);render();});show();
+}
+const cs=$('ctl-signal'),ce=$('ctl-err');
+slider(cs,'M','Valeur moyenne / offset (M)',-5,5,0.1,st.M,v=>st.M=v);
+['A1','A2','A3'].forEach((n,i)=>slider(cs,n,`Amplitude ${n}`,0,10,0.1,st.A[i],v=>st.A[i]=v));
+['f1','f2','f3'].forEach((n,i)=>slider(cs,n,`Fréquence ${n} (Hz)`,0,10,0.01,st.F[i],v=>st.F[i]=v,v=>v.toFixed(2)));
+slider(cs,'fe','Fréquence d\'échantillonnage fe (Hz)',2,100,1,st.fe,v=>st.fe=v);
+
+slider(ce,'P1','Gain (P1)',0.1,10,0.1,st.P1,v=>st.P1=v,v=>v.toFixed(1));
+slider(ce,'P0','OFFSET (P0)',-50,50,1,st.P0,v=>st.P0=v);
+slider(ce,'lam','λ',0.1,1.5,0.05,st.lam,v=>st.lam=v,v=>v.toFixed(2));
+slider(ce,'mu','µ',-10,10,0.5,st.mu,v=>st.mu=v);
+
+function errMode(){return st.cat==='lin'?st.lin:st.nl;}
+function syncErrUI(){
+  $('boxLin').style.display=st.cat==='lin'?'':'none';
+  $('boxNL').style.display=st.cat==='nl'?'':'none';
+  [...$('segErr').children].forEach(b=>b.classList.toggle('on',b.dataset.k===st.cat));
+  const m=errMode(), on=(id,b)=>$('g-'+id).classList.toggle('off',!b);
+  on('P1',['gain','gain_offset','offset_gain'].includes(m));
+  on('P0',['offset','gain_offset','offset_gain'].includes(m));
+  on('lam',['exp','log'].includes(m)); on('mu',['exp','log'].includes(m));
+  $('formule').innerHTML={
+    offset:'sd = s + P0', gain:'sd = P1 · s', gain_offset:'sd = P1 · s + P0', offset_gain:'sd = P1 · (s + P0)',
+    exp:'sd = exp(λ · s) + µ', log:'sd = λ · ln(|s| + 1) + µ'}[m];
+}
+$('segErr').addEventListener('click',e=>{if(e.target.dataset.k){st.cat=e.target.dataset.k;syncErrUI();render();}});
+document.querySelectorAll('input[name=lin]').forEach(r=>r.addEventListener('change',()=>{st.lin=r.value;syncErrUI();render();}));
+document.querySelectorAll('input[name=nl]').forEach(r=>r.addEventListener('change',()=>{st.nl=r.value;syncErrUI();render();}));
+$('estMode').addEventListener('change',e=>{st.est=e.target.value;render();});
+
+/* ============================================================
+   RENDU
+   ============================================================ */
+const fmt=(v,d=3)=>v==null?'–':(Math.abs(v)<1e-12?'0':v.toFixed(d));
+const NAMES={offset:'OFFSET',gain:'Gain',gain_offset:'Gain + OFFSET',offset_gain:'OFFSET + Gain',exp:'Exponentielle',log:'Logarithmique'};
+
+function render(){
+  const {t,s}=geneSignal(st.M,st.A,st.F,st.fe);
+  // Signal
+  chSignal.data.datasets[0].data=pts(t,s); chSignal.update();
+  // Erreur
+  const sd=deform(s,errMode(),st.P0,st.P1,st.lam,st.mu);
+  chErr.data.datasets[0].data=pts(t,s); chErr.data.datasets[1].data=pts(t,sd); chErr.update();
+  // FFT (signal déformé)
+  const sp=spectre(sd,st.fe);
+  chFFT.data.datasets[0].data=pts(sp.f,sp.S); chFFT.update();
+  $('kFond').textContent=sp.fond.toFixed(2)+' Hz';
+  // Estimation / Correction
+  const p=pipeline(st.est,st.fe);
+  const cmp=(lbl,est,real)=>`<div class="kpi"><small>${lbl}</small><b>${fmt(est)}</b><div class="note">réel : ${fmt(real)}</div></div>`;
+  let k='';
+  if(['exp','log'].includes(st.est)) k=cmp('λ estimé',p.lamm,st.lam)+cmp('µ estimé',p.mum,st.mu);
+  else k=cmp('OFFSET estimé',p.P0m==null?0:p.P0m,['gain'].includes(st.est)?0:st.P0)+cmp('GAIN estimé',p.P1m==null?1:p.P1m,['offset'].includes(st.est)?1:st.P1);
+  $('kpiEst').innerHTML=k;
+  $('warnEst').textContent=(['offset','gain_offset'].includes(st.est)&&st.P0<0)
+    ?'⚠ Comme dans le script MATLAB, l\'offset est mesuré avec abs(fft) : le signe est perdu pour un offset négatif.':'';
+  const tit={offset:'Spectre : de la déformée et de s_i − ⟨s_i⟩',gain:'Spectre : Gain sur (s_i − ⟨s_i⟩ + 1)',gain_offset:'Spectre : Gain + OFFSET',offset_gain:'Spectre : OFFSET + Gain',exp:'Spectre : Exponentielle',log:'Spectre : Logarithmique'}[st.est];
+  $('estTitle').textContent=tit;
+  const lbBase=['gain','gain_offset','offset_gain'].includes(st.est)?'s_i − ⟨s_i⟩ + 1':(['exp','log'].includes(st.est)?'Signal Original':'s_i − ⟨s_i⟩');
+  chEst.data.datasets[0].label='Signal Déformé'; chEst.data.datasets[1].label=lbBase;
+  chEst.data.datasets[0].data=pts(p.f,p.Sd.slice(0,p.N2));
+  chEst.data.datasets[1].data=pts(p.f.map(v=>v+0.1),p.Sb.slice(0,p.N2));
+  chEst.update();
+  // Correction
+  $('corrTitle').textContent='Correction '+NAMES[st.est];
+  chCorr.data.datasets[0].data=pts(p.t,p.sb); chCorr.data.datasets[1].data=pts(p.t,p.sc); chCorr.update();
+  const err=Math.sqrt(mean(p.sb.map((v,i)=>(v-p.sc[i])**2)));
+  $('corrNote').textContent='Écart quadratique moyen (origine vs corrigé) : '+err.toExponential(2);
+  // Debug
+  [0,1,2].forEach(i=>{
+    chD[i].data.datasets[0].data=pts(t,t.map(x=>st.A[i]*Math.sin(PI2*st.F[i]*x)));
+    chD[i].options.plugins.title.text=`Composante f${i+1} = ${st.F[i].toFixed(2)} Hz`;
+    chD[i].update();
+  });
+}
+
+/* ============================================================
+   ONGLETS
+   ============================================================ */
+$('nav').addEventListener('click',e=>{
+  const k=e.target.dataset.tab; if(!k) return; showTab(k);
+});
+function showTab(k){
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===k));
+  document.querySelectorAll('.tab').forEach(s=>s.classList.toggle('on',s.id==='tab-'+k));
+  [chSignal,chErr,chFFT,chEst,chCorr,...chD].forEach(c=>c.resize());
+}
+
+/* ============================================================
+   OPTIONS : Dark Debug, CSV, PDF
+   ============================================================ */
+$('btnDebug').onclick=()=>{const b=$('debugBox');b.style.display=b.style.display==='none'?'':'none';chD.forEach(c=>c.resize());};
+$('btnCsv').onclick=()=>{
+  const {t,s}=geneSignal(st.M,st.A,st.F,st.fe), sd=deform(s,errMode(),st.P0,st.P1,st.lam,st.mu);
+  const csv='Temps_s,Signal_Deforme\n'+t.map((v,i)=>v+','+sd[i]).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download='signal_deforme.csv';a.click();URL.revokeObjectURL(a.href);
+};
+$('btnPdf').onclick=()=>{
+  const cur=document.querySelector('#nav button.on').dataset.tab;
+  const grab=(tab,ch)=>{showTab(tab);ch.update('none');return ch.toBase64Image('image/png',1);};
+  const imgs=[grab('signal',chSignal),grab('erreur',chErr),grab('fft',chFFT),grab('correction',chCorr)];
+  showTab(cur);
+  const titles=['Signal Original','Signal Déformé / Erreur','Spectre FFT','Signal Corrigé'];
+  $('report').innerHTML=`<h2>RAPPORT D'ANALYSE ET CORRECTION DU SIGNAL</h2>
+    <p>Fe: ${st.fe.toFixed(1)} Hz | M: ${st.M.toFixed(2)} | Gain: ${st.P1.toFixed(2)} | Offset: ${st.P0.toFixed(2)}</p>`
+    +imgs.map((s,i)=>`<img alt="${titles[i]}" src="${s}">`).join('');
+  setTimeout(()=>window.print(),100);
+};
+
+syncErrUI(); render();
 </script>
 </body>
 </html>
